@@ -3,8 +3,8 @@ package sdk
 import (
 	"context"
 	"fmt"
+	"github.com/speakeasy-sdks/chord-go-sdk/pkg/models/operations"
 	"net/http"
-	"openapi/pkg/models/operations"
 	"strings"
 )
 

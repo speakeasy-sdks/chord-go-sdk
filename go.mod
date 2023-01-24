@@ -1,4 +1,4 @@
-module openapi
+module github.com/speakeasy-sdks/chord-go-sdk
 
 go 1.14
 

@@ -3,9 +3,9 @@ package sdk
 import (
 	"context"
 	"fmt"
+	"github.com/speakeasy-sdks/chord-go-sdk/pkg/models/operations"
+	"github.com/speakeasy-sdks/chord-go-sdk/pkg/utils"
 	"net/http"
-	"openapi/pkg/models/operations"
-	"openapi/pkg/utils"
 )
 
 type StoreConfiguration struct {

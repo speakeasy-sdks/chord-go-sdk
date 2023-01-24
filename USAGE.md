@@ -3,9 +3,9 @@
 package main
 
 import (
-    "openapi"
-    "openapi/pkg/models/shared"
-    "openapi/pkg/models/operations"
+    "github.com/speakeasy-sdks/chord-go-sdk"
+    "github.com/speakeasy-sdks/chord-go-sdk/pkg/models/shared"
+    "github.com/speakeasy-sdks/chord-go-sdk/pkg/models/operations"
 )
 
 func main() {

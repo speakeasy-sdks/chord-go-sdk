@@ -1,10 +1,12 @@
-# openapi
+# Chord Commerce Go SDK
+
+Chord’s headless e-commerce and data platform empower you to build bespoke, best-in-class e-commerce experiences. This is a Go SDK for the Chord API
 
 <!-- Start SDK Installation -->
 ## SDK Installation
 
 ```bash
-go get openapi
+go get github.com/speakeasy-sdks/chord-go-sdk
 ```
 <!-- End SDK Installation -->
 
@@ -14,9 +16,9 @@ go get openapi
 package main
 
 import (
-    "openapi"
-    "openapi/pkg/models/shared"
-    "openapi/pkg/models/operations"
+    "github.com/speakeasy-sdks/chord-go-sdk"
+    "github.com/speakeasy-sdks/chord-go-sdk/pkg/models/shared"
+    "github.com/speakeasy-sdks/chord-go-sdk/pkg/models/operations"
 )
 
 func main() {
