@@ -1,0 +1,1026 @@
+openapi: 3.0.1
+info:
+  title: Chord API
+  version: v1
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+security:
+  - bearerAuth: []
+servers:
+  - url: https://api.chord.co/v1
+paths:
+  /api/referral_identifiers:
+    post:
+      summary: Referral identifier
+      tags:
+        - ReferralIdentifier
+      operationId: findOrCreateReferralIdentifier
+      security: []
+      parameters: []
+      responses:
+        '200':
+          description: existed
+        '201':
+          description: created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+              required:
+                - email
+  /api/stock_requests:
+    post:
+      summary: Create Stock Request
+      tags:
+        - StockRequest
+      operationId: createStockRequest
+      security: []
+      parameters: []
+      responses:
+        '201':
+          description: Created
+        '422':
+          description: Invalid resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                stock_request:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    sku:
+                      type: string
+                  required:
+                    - email
+                    - sku
+              required:
+                - stock_request
+  /api/subscriptions/reminders:
+    get:
+      summary: get all Subscription Reminders
+      tags:
+        - Reminders
+      operationId: findReminders
+      description: get all subscription reminders
+      parameters:
+        - name: q
+          in: query
+          required: false
+          description: Ransack search
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  /api/tags:
+    get:
+      summary: get all Tags
+      tags:
+        - Tags
+      operationId: findTags
+      description: get all tags
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: create Tag
+      tags:
+        - Tag
+      operationId: createTag
+      description: 'if a tag with the same name exists, it is simply returned'
+      parameters: []
+      responses:
+        '200':
+          description: Created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tag:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                  required:
+                    - name
+              required:
+                - tag
+  '/api/tags/{id}':
+    get:
+      summary: retrieve Tag
+      tags:
+        - Tags
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  orders:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+    put:
+      summary: Update Tag
+      tags:
+        - Tags
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  orders:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tag:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                  required:
+                    - name
+              required:
+                - tag
+  '/api/tags/{id}/add_to/{order_number}':
+    put:
+      summary: Add Tag to Order
+      tags:
+        - Tags
+      description: Add tag with the given id to the order
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: order_number
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tags Added
+  '/api/tags/add_to/{order_number}':
+    put:
+      summary: Add Tag(s) to Order
+      tags:
+        - Tags
+      description: Use the body to pass multiple tags
+      parameters:
+        - name: order_number
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tags Added
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tags:
+                  type: array
+                  items:
+                    type: string
+  '/api/tags/{id})/remove_from/{order_number}':
+    put:
+      summary: Remove Tag(s) from order
+      tags:
+        - Tags
+      description: Remove the given tag from the order
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: order_number
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tags Removed
+  '/api/tags/remove_from/{order_number}':
+    put:
+      summary: Remove Tag(s) from order
+      tags:
+        - Tags
+      description: Use the body to pass multiple tags
+      parameters:
+        - name: order_number
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tags Removed
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tags:
+                  type: array
+                  items:
+                    type: string
+  /api/tags/add_to_orders:
+    put:
+      summary: Add Tag(s) to Order(s)
+      tags:
+        - Tags
+      parameters: []
+      responses:
+        '200':
+          description: Tags Added
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tags:
+                  type: array
+                  items:
+                    type: string
+                orders:
+                  type: array
+                  items:
+                    type: string
+  /api/webhook/attempts:
+    get:
+      summary: get all Webhook Attemps
+      tags:
+        - Attempts
+      operationId: findWebhookAttemps
+      description: get all webhook attempts
+      parameters:
+        - name: q
+          in: query
+          required: false
+          description: Ransack search
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  '/api/webhook/attempts/{id}':
+    get:
+      summary: retrieve Attempt
+      tags:
+        - Attempts
+      parameters:
+        - name: id
+          in: path
+          description: Attempt id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  event_name:
+                    type: string
+                  http_status_code:
+                    type: integer
+                  target_url:
+                    type: string
+                  token:
+                    type: string
+                    nullable: true
+                  idempotency_key:
+                    type: string
+                    nullable: true
+  /api/webhook/endpoints:
+    get:
+      summary: get all Webhook Endpoints
+      tags:
+        - Endpoints
+      operationId: findWebhookEndpoints
+      description: get all webhook endpoints
+      parameters:
+        - name: include_attempts
+          in: query
+          required: false
+          description: Include attemps
+          schema:
+            type: boolean
+        - name: attempts_count
+          in: query
+          required: false
+          description: Maximum number of attempts (by default limited to 25)
+          schema:
+            type: integer
+        - name: q
+          in: query
+          required: false
+          description: Ransack search
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: create Endpoint
+      tags:
+        - Endpoint
+      operationId: createEndpoint
+      description: 'if an endpoint with the same name exists, it is simply returned'
+      parameters: []
+      responses:
+        '201':
+          description: Created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                endpoint:
+                  type: object
+                  properties:
+                    target_url:
+                      type: string
+                    token:
+                      type: string
+                    events:
+                      type: array
+                      items:
+                        type: string
+                    filters:
+                      type: array
+                      items:
+                        type: string
+                  required:
+                    - target_url
+                    - events
+              required:
+                - endpoint
+  '/api/webhook/endpoints/{id}':
+    get:
+      summary: retrieve Endpoint
+      tags:
+        - Endpoints
+      parameters:
+        - name: include_attempts
+          in: query
+          required: false
+          description: Include attemps
+          schema:
+            type: boolean
+        - name: attempts_count
+          in: query
+          required: false
+          description: Maximum number of attempts (by default limited to 25)
+          schema:
+            type: integer
+        - name: id
+          in: path
+          description: Endpoint id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  target_url:
+                    type: string
+                  token:
+                    type: string
+                    nullable: true
+                  events:
+                    type: array
+                    items:
+                      type: string
+                  filters:
+                    type: array
+                    items:
+                      type: string
+    put:
+      summary: Update Endpoint
+      tags:
+        - Endpoints
+      parameters:
+        - name: id
+          in: path
+          description: Endpoint id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  target_url:
+                    type: string
+                  token:
+                    type: string
+                    nullable: true
+                  events:
+                    type: array
+                    items:
+                      type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                endpoint:
+                  type: object
+                  properties:
+                    target_url:
+                      type: string
+                    token:
+                      type: string
+                  required:
+                    - target_url
+              required:
+                - endpoint
+    delete:
+      summary: Remove Endpoint
+      tags:
+        - Endpoint
+      parameters:
+        - name: id
+          in: path
+          description: Endpoint id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Endpoint Removed
+      # requestBody:
+      #   content:
+      #     application/json:
+      #       schema:
+      #         type: object
+      #         properties:
+      #           endpoint:
+      #             type: object
+      #             properties:
+      #               target_url:
+      #                 type: string
+      #             required:
+      #               - target_url
+      #         required:
+      #           - endpoint
+  '/api/countries':
+    get:
+      summary: Get all countries
+      tags:
+        - Country
+      operationId: listCountries
+      description: get all countries
+      responses:
+        '200':
+          description: OK
+  '/api/countries/{id}':
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get the country by id
+      tags:
+        - Country
+      operationId: getCountryById
+      description: get the country by id
+      responses:
+        '200':
+          description: OK
+  '/api/stores/{store_id}/environment_variables':
+    get:
+      summary: get Store Configuration
+      tags:
+        - Store Configuration
+      description: Gets the Store Configuration
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  CONFIG_1:
+                    type: string
+                  CONFIG_2:
+                    type: string
+                description: The Environment Variables of the Store
+    post:
+      summary: Update Store Configuration
+      tags:
+        - Store Configuration
+      description: Update the Store Configuration
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  CONFIG_1:
+                    type: string
+                  CONFIG_2:
+                    type: string
+                description: The updated Environment Variables of the Store
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                settings:
+                  type: array
+                  items:
+                    properties:
+                      key:
+                        type: string
+                      value:
+                        type: string
+                      _delete:
+                        type: boolean
+                    required:
+                      - key
+                      - value
+              required:
+                - settings
+    patch:
+      summary: Update Store Configuration
+      tags:
+        - Store Configuration
+      description: Update the Store Configuration
+      parameters:
+        - name: store_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  CONFIG_1:
+                    type: string
+                  CONFIG_2:
+                    type: string
+                description: The updated Environment Variables of the Store
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                settings:
+                  type: array
+                  items:
+                    properties:
+                      key:
+                        type: string
+                      value:
+                        type: string
+                      _delete:
+                        type: boolean
+                    required:
+                      - key
+                      - value
+              required:
+                - settings
+  /api/roles:
+    get:
+      summary: get all Roles
+      tags:
+        - Roles
+      operationId: findRoles
+      description: get all roles
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: create Role
+      tags:
+        - Roles
+      operationId: createRole
+      description: creates a Role. Users can be added to it by passing the role_users_attributes array with each user_id
+      parameters: []
+      responses:
+        '200':
+          description: Created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                role:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    role_users_attributes:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          user_id:
+                            type: integer
+                  required:
+                    - name
+              required:
+                - role
+  '/api/roles/{id}':
+    get:
+      summary: retrieve Role
+      tags:
+        - Roles
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  users:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        email:
+                          type: string
+    put:
+      summary: Update Role
+      tags:
+        - Roles
+      description: |2-
+
+                    Updates the given role. Users can be added / removed by adding a :users array with the ids.
+                    If a _destroy key is passed along with a truthy value, the user association will be removed if present
+                  
+      parameters:
+        - name: id
+          in: path
+          description: Role id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Change name
+        '201':
+          description: Add / remove users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                role:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    users:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          _destroy:
+                            type: boolean
+                        required:
+                          - id
+                  required:
+                    - name
+              required:
+                - role
+  '/api/roles/{id}/add/{user_id}':
+    put:
+      summary: Add User to Role
+      tags:
+        - Roles
+      parameters:
+        - name: id
+          in: path
+          description: Role id
+          required: true
+          schema:
+            type: string
+        - name: user_id
+          in: path
+          description: User id
+          required: true
+          schema:
+            type: string
+      description: |2-
+
+                    Adds the User to the given role.
+                    If the user is already in the role, nothing is done and the role is simply returned
+                  
+      responses:
+        '200':
+          description: User already on Role
+        '201':
+          description: User added
+  '/api/roles/{id}/remove/{user_id}':
+    put:
+      summary: Remove User from Role
+      tags:
+        - Roles
+      parameters:
+        - name: id
+          in: path
+          description: Role id
+          required: true
+          schema:
+            type: string
+        - name: user_id
+          in: path
+          description: User id
+          required: true
+          schema:
+            type: string
+      description: |2-
+
+                    Removes the User from the Role.
+                    If the user hasn't got the given Role, nothing is done and the role is simply returned
+                  
+      responses:
+        '200':
+          description: User is not in Role
+        '201':
+          description: User removed
+  /api/states:
+    get:
+      summary: Get all states
+      tags:
+        - State
+      operationId: listStates
+      description: Get all states
+      responses:
+        '200':
+          description: OK
+  '/api/countries/{country_id}/states':
+    parameters:
+      - name: country_id
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get the states for one country retrieved by id
+      tags:
+        - State
+      operationId: getStatesById
+      description: get the state by country ID
+      responses:
+        '200':
+          description: OK
+  '/api/subscriptions/{subscription_id}/tags':
+    post:
+      summary: add tags to subscription
+      tags:
+        - Subscription Tags
+      operationId: createSubscriptionTags
+      description: Use the body to pass multiple tags
+      parameters:
+        - name: subscription_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tags:
+                  type: array
+                  items:
+                    type: string
+    delete:
+      summary: remove tags from the subscription
+      tags:
+        - Subscription Tags
+      operationId: deleteSubscriptionTags
+      description: Use the body to pass multiple tags
+      parameters:
+        - name: subscription_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deleted
+        '401':
+          description: Unauthorized
+      # requestBody:
+      #   content:
+      #     application/json:
+      #       schema:
+      #         type: object
+      #         properties:
+      #           tags:
+      #             type: array
+      #             items:
+      #               type: string
+    put:
+      summary: set the tags on the subscription
+      tags:
+        - Subscription Tags
+      operationId: updateSubscriptionTags
+      description: Set the tags on the subscription
+      parameters:
+        - name: subscription_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Updated
+        '401':
+          description: Unauthorized
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tags:
+                  type: array
+                  items:
+                    type: string
+  /api/subscriptions:
+    get:
+      summary: Retrieves all subscriptions
+      tags:
+        - Subscription Tags
+      operationId: getSubscriptions
+      parameters:
+        - name: q
+          in: query
+          required: false
+          description: Ransack search
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+  '/api/subscriptions/{id}':
+    get:
+      summary: Retrieve a subscription
+      tags:
+        - Subscription Tags
+      operationId: getSubscription
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+  /api/wallet_payment_sources:
+    get:
+      summary: Get all user payment sources
+      tags:
+        - WalletPaymentSource
+      operationId: listWalletPaymentSource
+      description: Get all payment sources that belong to the current user
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+  /api/solidus_importer/imports:
+    post:
+      summary: Create Import
+      tags:
+        - Imports
+      parameters: []
+      responses:
+        '201':
+          description: Created
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: string
+              format: binary
