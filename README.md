@@ -1,6 +1,6 @@
 # Chord Commerce Go SDK
 
-Chord’s headless e-commerce and data platform empower you to build bespoke, best-in-class e-commerce experiences. This is a Go SDK for the Chord API
+Chord’s headless e-commerce and data platform empower you to build bespoke, best-in-class e-commerce experiences. This is a Go SDK for the [Chord API](https://chord.stoplight.io/docs/chord-oms/f593af8ec51a9-chord-api)
 
 <!-- Start SDK Installation -->
 ## SDK Installation
