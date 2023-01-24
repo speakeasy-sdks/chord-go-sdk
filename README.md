@@ -1,4 +1,6 @@
-# openapi
+# Chord Commerce Go SDK
+
+
 
 <!-- Start SDK Installation -->
 ## SDK Installation
