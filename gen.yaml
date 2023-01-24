@@ -1,3 +1,7 @@
+management:
+    openapi-checksum: 0ba019f1dc303b71c1d426d1248c64f1
+    openapi-version: v1
+    speakeasy-version: 0.21.0
 go:
-  packagename: "github.com/speakeasy-sdks/chord-go-sdk" # The package name for the generated Go SDK. Should be based on the `go get` package name that would be used to get the SDK. Defaults to `openapi`.
-  version: "1.0.0"
+    version: 1.1.0
+    packagename: github.com/speakeasy-sdks/chord-go-sdk
