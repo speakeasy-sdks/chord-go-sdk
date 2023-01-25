@@ -77,7 +77,7 @@ The order token must be passed in the X-Spree-Order-Token header in the followin
 
 `X-Spree-Order-Token: ORDER_TOKEN`
 
-If you are already providing an API key, you don't need to also provide the order token (although you may do so).
+If you are already providing an API key, you don't need to also provide the order token (although you may do so). More information on authentication can be found [here](https://chord.stoplight.io/docs/chord-oms/ZG9jOjEwODE5NTQ-authentication)
 
 <!-- Start SDK Available Operations -->
 ## SDK Available Operations
