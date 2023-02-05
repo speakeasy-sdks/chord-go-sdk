@@ -9,17 +9,17 @@ type GetAPIWebhookEndpointsIDQueryParams struct {
 	IncludeAttempts *bool  `queryParam:"style=form,explode=true,name=include_attempts"`
 }
 
+type GetAPIWebhookEndpointsIDRequest struct {
+	PathParams  GetAPIWebhookEndpointsIDPathParams
+	QueryParams GetAPIWebhookEndpointsIDQueryParams
+}
+
 type GetAPIWebhookEndpointsID200ApplicationJSON struct {
 	Events    []string `json:"events,omitempty"`
 	Filters   []string `json:"filters,omitempty"`
 	ID        *int64   `json:"id,omitempty"`
 	TargetURL *string  `json:"target_url,omitempty"`
 	Token     *string  `json:"token,omitempty"`
-}
-
-type GetAPIWebhookEndpointsIDRequest struct {
-	PathParams  GetAPIWebhookEndpointsIDPathParams
-	QueryParams GetAPIWebhookEndpointsIDQueryParams
 }
 
 type GetAPIWebhookEndpointsIDResponse struct {

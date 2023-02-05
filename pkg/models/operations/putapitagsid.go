@@ -12,6 +12,11 @@ type PutAPITagsIDRequestBody struct {
 	Tag PutAPITagsIDRequestBodyTag `json:"tag"`
 }
 
+type PutAPITagsIDRequest struct {
+	PathParams PutAPITagsIDPathParams
+	Request    *PutAPITagsIDRequestBody `request:"mediaType=application/json"`
+}
+
 type PutAPITagsID200ApplicationJSONOrders struct {
 	ID *int64 `json:"id,omitempty"`
 }
@@ -19,11 +24,6 @@ type PutAPITagsID200ApplicationJSONOrders struct {
 type PutAPITagsID200ApplicationJSON struct {
 	Name   *string                                `json:"name,omitempty"`
 	Orders []PutAPITagsID200ApplicationJSONOrders `json:"orders,omitempty"`
-}
-
-type PutAPITagsIDRequest struct {
-	PathParams PutAPITagsIDPathParams
-	Request    *PutAPITagsIDRequestBody `request:"mediaType=application/json"`
 }
 
 type PutAPITagsIDResponse struct {

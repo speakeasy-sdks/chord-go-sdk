@@ -4,6 +4,10 @@ type GetAPITagsIDPathParams struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+type GetAPITagsIDRequest struct {
+	PathParams GetAPITagsIDPathParams
+}
+
 type GetAPITagsID200ApplicationJSONOrders struct {
 	ID *int64 `json:"id,omitempty"`
 }
@@ -11,10 +15,6 @@ type GetAPITagsID200ApplicationJSONOrders struct {
 type GetAPITagsID200ApplicationJSON struct {
 	Name   *string                                `json:"name,omitempty"`
 	Orders []GetAPITagsID200ApplicationJSONOrders `json:"orders,omitempty"`
-}
-
-type GetAPITagsIDRequest struct {
-	PathParams GetAPITagsIDPathParams
 }
 
 type GetAPITagsIDResponse struct {

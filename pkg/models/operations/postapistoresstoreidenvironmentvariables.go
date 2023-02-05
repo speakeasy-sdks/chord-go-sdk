@@ -8,16 +8,16 @@ type PostAPIStoresStoreIDEnvironmentVariablesRequestBody struct {
 	Settings []interface{} `json:"settings"`
 }
 
-// PostAPIStoresStoreIDEnvironmentVariables201ApplicationJSON
-// The updated Environment Variables of the Store
-type PostAPIStoresStoreIDEnvironmentVariables201ApplicationJSON struct {
-	CONFIG1 *string `json:"CONFIG_1,omitempty"`
-	CONFIG2 *string `json:"CONFIG_2,omitempty"`
-}
-
 type PostAPIStoresStoreIDEnvironmentVariablesRequest struct {
 	PathParams PostAPIStoresStoreIDEnvironmentVariablesPathParams
 	Request    *PostAPIStoresStoreIDEnvironmentVariablesRequestBody `request:"mediaType=application/json"`
+}
+
+// PostAPIStoresStoreIDEnvironmentVariables201ApplicationJSON
+// The updated Environment Variables of the Store
+type PostAPIStoresStoreIDEnvironmentVariables201ApplicationJSON struct {
+	Config1 *string `json:"CONFIG_1,omitempty"`
+	Config2 *string `json:"CONFIG_2,omitempty"`
 }
 
 type PostAPIStoresStoreIDEnvironmentVariablesResponse struct {
