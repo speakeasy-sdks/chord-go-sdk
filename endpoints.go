@@ -3,36 +3,36 @@ package sdk
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/chord-go-sdk/pkg/models/operations"
-	"github.com/speakeasy-sdks/chord-go-sdk/pkg/utils"
+	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/models/operations"
+	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/utils"
 	"net/http"
 	"strings"
 )
 
-type Endpoints struct {
-	_defaultClient  HTTPClient
-	_securityClient HTTPClient
-	_serverURL      string
-	_language       string
-	_sdkVersion     string
-	_genVersion     string
+type endpoints struct {
+	defaultClient  HTTPClient
+	securityClient HTTPClient
+	serverURL      string
+	language       string
+	sdkVersion     string
+	genVersion     string
 }
 
-func NewEndpoints(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *Endpoints {
-	return &Endpoints{
-		_defaultClient:  defaultClient,
-		_securityClient: securityClient,
-		_serverURL:      serverURL,
-		_language:       language,
-		_sdkVersion:     sdkVersion,
-		_genVersion:     genVersion,
+func newEndpoints(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *endpoints {
+	return &endpoints{
+		defaultClient:  defaultClient,
+		securityClient: securityClient,
+		serverURL:      serverURL,
+		language:       language,
+		sdkVersion:     sdkVersion,
+		genVersion:     genVersion,
 	}
 }
 
 // FindWebhookEndpoints - get all Webhook Endpoints
 // get all webhook endpoints
-func (s *Endpoints) FindWebhookEndpoints(ctx context.Context, request operations.FindWebhookEndpointsRequest) (*operations.FindWebhookEndpointsResponse, error) {
-	baseURL := s._serverURL
+func (s *endpoints) FindWebhookEndpoints(ctx context.Context, request operations.FindWebhookEndpointsRequest) (*operations.FindWebhookEndpointsResponse, error) {
+	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/api/webhook/endpoints"
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -42,11 +42,14 @@ func (s *Endpoints) FindWebhookEndpoints(ctx context.Context, request operations
 
 	utils.PopulateQueryParams(ctx, req, request.QueryParams)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -64,8 +67,8 @@ func (s *Endpoints) FindWebhookEndpoints(ctx context.Context, request operations
 }
 
 // GetAPIWebhookEndpointsID - retrieve Endpoint
-func (s *Endpoints) GetAPIWebhookEndpointsID(ctx context.Context, request operations.GetAPIWebhookEndpointsIDRequest) (*operations.GetAPIWebhookEndpointsIDResponse, error) {
-	baseURL := s._serverURL
+func (s *endpoints) GetAPIWebhookEndpointsID(ctx context.Context, request operations.GetAPIWebhookEndpointsIDRequest) (*operations.GetAPIWebhookEndpointsIDResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/api/webhook/endpoints/{id}", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -75,11 +78,14 @@ func (s *Endpoints) GetAPIWebhookEndpointsID(ctx context.Context, request operat
 
 	utils.PopulateQueryParams(ctx, req, request.QueryParams)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -106,8 +112,8 @@ func (s *Endpoints) GetAPIWebhookEndpointsID(ctx context.Context, request operat
 }
 
 // PutAPIWebhookEndpointsID - Update Endpoint
-func (s *Endpoints) PutAPIWebhookEndpointsID(ctx context.Context, request operations.PutAPIWebhookEndpointsIDRequest) (*operations.PutAPIWebhookEndpointsIDResponse, error) {
-	baseURL := s._serverURL
+func (s *endpoints) PutAPIWebhookEndpointsID(ctx context.Context, request operations.PutAPIWebhookEndpointsIDRequest) (*operations.PutAPIWebhookEndpointsIDResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/api/webhook/endpoints/{id}", request.PathParams)
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
@@ -122,11 +128,14 @@ func (s *Endpoints) PutAPIWebhookEndpointsID(ctx context.Context, request operat
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 

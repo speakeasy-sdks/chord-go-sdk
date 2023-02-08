@@ -3,35 +3,35 @@ package sdk
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/chord-go-sdk/pkg/models/operations"
+	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/models/operations"
 	"net/http"
 	"strings"
 )
 
-type WalletPaymentSource struct {
-	_defaultClient  HTTPClient
-	_securityClient HTTPClient
-	_serverURL      string
-	_language       string
-	_sdkVersion     string
-	_genVersion     string
+type walletPaymentSource struct {
+	defaultClient  HTTPClient
+	securityClient HTTPClient
+	serverURL      string
+	language       string
+	sdkVersion     string
+	genVersion     string
 }
 
-func NewWalletPaymentSource(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *WalletPaymentSource {
-	return &WalletPaymentSource{
-		_defaultClient:  defaultClient,
-		_securityClient: securityClient,
-		_serverURL:      serverURL,
-		_language:       language,
-		_sdkVersion:     sdkVersion,
-		_genVersion:     genVersion,
+func newWalletPaymentSource(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *walletPaymentSource {
+	return &walletPaymentSource{
+		defaultClient:  defaultClient,
+		securityClient: securityClient,
+		serverURL:      serverURL,
+		language:       language,
+		sdkVersion:     sdkVersion,
+		genVersion:     genVersion,
 	}
 }
 
 // ListWalletPaymentSource - Get all user payment sources
 // Get all payment sources that belong to the current user
-func (s *WalletPaymentSource) ListWalletPaymentSource(ctx context.Context) (*operations.ListWalletPaymentSourceResponse, error) {
-	baseURL := s._serverURL
+func (s *walletPaymentSource) ListWalletPaymentSource(ctx context.Context) (*operations.ListWalletPaymentSourceResponse, error) {
+	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/api/wallet_payment_sources"
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -39,11 +39,14 @@ func (s *WalletPaymentSource) ListWalletPaymentSource(ctx context.Context) (*ope
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 

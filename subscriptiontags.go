@@ -3,36 +3,36 @@ package sdk
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/chord-go-sdk/pkg/models/operations"
-	"github.com/speakeasy-sdks/chord-go-sdk/pkg/utils"
+	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/models/operations"
+	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/utils"
 	"net/http"
 	"strings"
 )
 
-type SubscriptionTags struct {
-	_defaultClient  HTTPClient
-	_securityClient HTTPClient
-	_serverURL      string
-	_language       string
-	_sdkVersion     string
-	_genVersion     string
+type subscriptionTags struct {
+	defaultClient  HTTPClient
+	securityClient HTTPClient
+	serverURL      string
+	language       string
+	sdkVersion     string
+	genVersion     string
 }
 
-func NewSubscriptionTags(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *SubscriptionTags {
-	return &SubscriptionTags{
-		_defaultClient:  defaultClient,
-		_securityClient: securityClient,
-		_serverURL:      serverURL,
-		_language:       language,
-		_sdkVersion:     sdkVersion,
-		_genVersion:     genVersion,
+func newSubscriptionTags(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *subscriptionTags {
+	return &subscriptionTags{
+		defaultClient:  defaultClient,
+		securityClient: securityClient,
+		serverURL:      serverURL,
+		language:       language,
+		sdkVersion:     sdkVersion,
+		genVersion:     genVersion,
 	}
 }
 
 // CreateSubscriptionTags - add tags to subscription
 // Use the body to pass multiple tags
-func (s *SubscriptionTags) CreateSubscriptionTags(ctx context.Context, request operations.CreateSubscriptionTagsRequest) (*operations.CreateSubscriptionTagsResponse, error) {
-	baseURL := s._serverURL
+func (s *subscriptionTags) CreateSubscriptionTags(ctx context.Context, request operations.CreateSubscriptionTagsRequest) (*operations.CreateSubscriptionTagsResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/api/subscriptions/{subscription_id}/tags", request.PathParams)
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
@@ -47,11 +47,14 @@ func (s *SubscriptionTags) CreateSubscriptionTags(ctx context.Context, request o
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -71,8 +74,8 @@ func (s *SubscriptionTags) CreateSubscriptionTags(ctx context.Context, request o
 
 // DeleteSubscriptionTags - remove tags from the subscription
 // Use the body to pass multiple tags
-func (s *SubscriptionTags) DeleteSubscriptionTags(ctx context.Context, request operations.DeleteSubscriptionTagsRequest) (*operations.DeleteSubscriptionTagsResponse, error) {
-	baseURL := s._serverURL
+func (s *subscriptionTags) DeleteSubscriptionTags(ctx context.Context, request operations.DeleteSubscriptionTagsRequest) (*operations.DeleteSubscriptionTagsResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/api/subscriptions/{subscription_id}/tags", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
@@ -80,11 +83,14 @@ func (s *SubscriptionTags) DeleteSubscriptionTags(ctx context.Context, request o
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -103,8 +109,8 @@ func (s *SubscriptionTags) DeleteSubscriptionTags(ctx context.Context, request o
 }
 
 // GetSubscription - Retrieve a subscription
-func (s *SubscriptionTags) GetSubscription(ctx context.Context, request operations.GetSubscriptionRequest) (*operations.GetSubscriptionResponse, error) {
-	baseURL := s._serverURL
+func (s *subscriptionTags) GetSubscription(ctx context.Context, request operations.GetSubscriptionRequest) (*operations.GetSubscriptionResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/api/subscriptions/{id}", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -112,11 +118,14 @@ func (s *SubscriptionTags) GetSubscription(ctx context.Context, request operatio
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -135,8 +144,8 @@ func (s *SubscriptionTags) GetSubscription(ctx context.Context, request operatio
 }
 
 // GetSubscriptions - Retrieves all subscriptions
-func (s *SubscriptionTags) GetSubscriptions(ctx context.Context, request operations.GetSubscriptionsRequest) (*operations.GetSubscriptionsResponse, error) {
-	baseURL := s._serverURL
+func (s *subscriptionTags) GetSubscriptions(ctx context.Context, request operations.GetSubscriptionsRequest) (*operations.GetSubscriptionsResponse, error) {
+	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/api/subscriptions"
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -146,11 +155,14 @@ func (s *SubscriptionTags) GetSubscriptions(ctx context.Context, request operati
 
 	utils.PopulateQueryParams(ctx, req, request.QueryParams)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -169,8 +181,8 @@ func (s *SubscriptionTags) GetSubscriptions(ctx context.Context, request operati
 
 // UpdateSubscriptionTags - set the tags on the subscription
 // Set the tags on the subscription
-func (s *SubscriptionTags) UpdateSubscriptionTags(ctx context.Context, request operations.UpdateSubscriptionTagsRequest) (*operations.UpdateSubscriptionTagsResponse, error) {
-	baseURL := s._serverURL
+func (s *subscriptionTags) UpdateSubscriptionTags(ctx context.Context, request operations.UpdateSubscriptionTagsRequest) (*operations.UpdateSubscriptionTagsResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/api/subscriptions/{subscription_id}/tags", request.PathParams)
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
@@ -185,11 +197,14 @@ func (s *SubscriptionTags) UpdateSubscriptionTags(ctx context.Context, request o
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 

@@ -16,6 +16,7 @@ go get github.com/speakeasy-sdks/chord-go-sdk
 package main
 
 import (
+    "log"
     "github.com/speakeasy-sdks/chord-go-sdk"
     "github.com/speakeasy-sdks/chord-go-sdk/pkg/models/shared"
     "github.com/speakeasy-sdks/chord-go-sdk/pkg/models/operations"
