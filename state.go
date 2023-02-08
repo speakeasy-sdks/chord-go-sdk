@@ -3,36 +3,36 @@ package sdk
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/chord-go-sdk/pkg/models/operations"
-	"github.com/speakeasy-sdks/chord-go-sdk/pkg/utils"
+	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/models/operations"
+	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/utils"
 	"net/http"
 	"strings"
 )
 
-type State struct {
-	_defaultClient  HTTPClient
-	_securityClient HTTPClient
-	_serverURL      string
-	_language       string
-	_sdkVersion     string
-	_genVersion     string
+type state struct {
+	defaultClient  HTTPClient
+	securityClient HTTPClient
+	serverURL      string
+	language       string
+	sdkVersion     string
+	genVersion     string
 }
 
-func NewState(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *State {
-	return &State{
-		_defaultClient:  defaultClient,
-		_securityClient: securityClient,
-		_serverURL:      serverURL,
-		_language:       language,
-		_sdkVersion:     sdkVersion,
-		_genVersion:     genVersion,
+func newState(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *state {
+	return &state{
+		defaultClient:  defaultClient,
+		securityClient: securityClient,
+		serverURL:      serverURL,
+		language:       language,
+		sdkVersion:     sdkVersion,
+		genVersion:     genVersion,
 	}
 }
 
 // GetStatesByID - Get the states for one country retrieved by id
 // get the state by country ID
-func (s *State) GetStatesByID(ctx context.Context, request operations.GetStatesByIDRequest) (*operations.GetStatesByIDResponse, error) {
-	baseURL := s._serverURL
+func (s *state) GetStatesByID(ctx context.Context, request operations.GetStatesByIDRequest) (*operations.GetStatesByIDResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/api/countries/{country_id}/states", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -40,11 +40,14 @@ func (s *State) GetStatesByID(ctx context.Context, request operations.GetStatesB
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -63,8 +66,8 @@ func (s *State) GetStatesByID(ctx context.Context, request operations.GetStatesB
 
 // ListStates - Get all states
 // Get all states
-func (s *State) ListStates(ctx context.Context) (*operations.ListStatesResponse, error) {
-	baseURL := s._serverURL
+func (s *state) ListStates(ctx context.Context) (*operations.ListStatesResponse, error) {
+	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/api/states"
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -72,11 +75,14 @@ func (s *State) ListStates(ctx context.Context) (*operations.ListStatesResponse,
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 

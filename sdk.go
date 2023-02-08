@@ -1,10 +1,10 @@
 package sdk
 
 import (
+	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/models/shared"
+	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/utils"
 	"net/http"
-
-	"github.com/speakeasy-sdks/chord-go-sdk/pkg/models/shared"
-	"github.com/speakeasy-sdks/chord-go-sdk/pkg/utils"
+	"time"
 )
 
 var ServerList = []string{
@@ -16,22 +16,23 @@ type HTTPClient interface {
 }
 
 type SDK struct {
-	Attempts            *Attempts
-	Country             *Country
-	Endpoint            *Endpoint
-	Endpoints           *Endpoints
-	Imports             *Imports
-	ReferralIdentifier  *ReferralIdentifier
-	Reminders           *Reminders
-	Roles               *Roles
-	State               *State
-	StockRequest        *StockRequest
-	StoreConfiguration  *StoreConfiguration
-	SubscriptionTags    *SubscriptionTags
-	Tag                 *Tag
-	Tags                *Tags
-	WalletPaymentSource *WalletPaymentSource
+	Attempts            *attempts
+	Country             *country
+	Endpoint            *endpoint
+	Endpoints           *endpoints
+	Imports             *imports
+	ReferralIdentifier  *referralIdentifier
+	Reminders           *reminders
+	Roles               *roles
+	State               *state
+	StockRequest        *stockRequest
+	StoreConfiguration  *storeConfiguration
+	SubscriptionTags    *subscriptionTags
+	Tag                 *tag
+	Tags                *tags
+	WalletPaymentSource *walletPaymentSource
 
+	// Non-idiomatic field names below are to namespace fields from the fields names above to avoid name conflicts
 	_defaultClient  HTTPClient
 	_securityClient HTTPClient
 	_security       *shared.Security
@@ -68,15 +69,16 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
 		_language:   "go",
-		_sdkVersion: "1.1.1",
-		_genVersion: "0.21.0",
+		_sdkVersion: "2.1.0",
+		_genVersion: "1.1.1",
 	}
 	for _, opt := range opts {
 		opt(sdk)
 	}
 
+	// Use WithClient to override the default client if you would like to customize the timeout
 	if sdk._defaultClient == nil {
-		sdk._defaultClient = http.DefaultClient
+		sdk._defaultClient = &http.Client{Timeout: 60 * time.Second}
 	}
 	if sdk._securityClient == nil {
 
@@ -92,7 +94,7 @@ func New(opts ...SDKOption) *SDK {
 		sdk._serverURL = ServerList[0]
 	}
 
-	sdk.Attempts = NewAttempts(
+	sdk.Attempts = newAttempts(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -101,7 +103,7 @@ func New(opts ...SDKOption) *SDK {
 		sdk._genVersion,
 	)
 
-	sdk.Country = NewCountry(
+	sdk.Country = newCountry(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -110,7 +112,7 @@ func New(opts ...SDKOption) *SDK {
 		sdk._genVersion,
 	)
 
-	sdk.Endpoint = NewEndpoint(
+	sdk.Endpoint = newEndpoint(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -119,7 +121,7 @@ func New(opts ...SDKOption) *SDK {
 		sdk._genVersion,
 	)
 
-	sdk.Endpoints = NewEndpoints(
+	sdk.Endpoints = newEndpoints(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -128,7 +130,7 @@ func New(opts ...SDKOption) *SDK {
 		sdk._genVersion,
 	)
 
-	sdk.Imports = NewImports(
+	sdk.Imports = newImports(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -137,7 +139,7 @@ func New(opts ...SDKOption) *SDK {
 		sdk._genVersion,
 	)
 
-	sdk.ReferralIdentifier = NewReferralIdentifier(
+	sdk.ReferralIdentifier = newReferralIdentifier(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -146,7 +148,7 @@ func New(opts ...SDKOption) *SDK {
 		sdk._genVersion,
 	)
 
-	sdk.Reminders = NewReminders(
+	sdk.Reminders = newReminders(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -155,7 +157,7 @@ func New(opts ...SDKOption) *SDK {
 		sdk._genVersion,
 	)
 
-	sdk.Roles = NewRoles(
+	sdk.Roles = newRoles(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -164,7 +166,7 @@ func New(opts ...SDKOption) *SDK {
 		sdk._genVersion,
 	)
 
-	sdk.State = NewState(
+	sdk.State = newState(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -173,7 +175,7 @@ func New(opts ...SDKOption) *SDK {
 		sdk._genVersion,
 	)
 
-	sdk.StockRequest = NewStockRequest(
+	sdk.StockRequest = newStockRequest(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -182,7 +184,7 @@ func New(opts ...SDKOption) *SDK {
 		sdk._genVersion,
 	)
 
-	sdk.StoreConfiguration = NewStoreConfiguration(
+	sdk.StoreConfiguration = newStoreConfiguration(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -191,7 +193,7 @@ func New(opts ...SDKOption) *SDK {
 		sdk._genVersion,
 	)
 
-	sdk.SubscriptionTags = NewSubscriptionTags(
+	sdk.SubscriptionTags = newSubscriptionTags(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -200,7 +202,7 @@ func New(opts ...SDKOption) *SDK {
 		sdk._genVersion,
 	)
 
-	sdk.Tag = NewTag(
+	sdk.Tag = newTag(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -209,7 +211,7 @@ func New(opts ...SDKOption) *SDK {
 		sdk._genVersion,
 	)
 
-	sdk.Tags = NewTags(
+	sdk.Tags = newTags(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,
@@ -218,7 +220,7 @@ func New(opts ...SDKOption) *SDK {
 		sdk._genVersion,
 	)
 
-	sdk.WalletPaymentSource = NewWalletPaymentSource(
+	sdk.WalletPaymentSource = newWalletPaymentSource(
 		sdk._defaultClient,
 		sdk._securityClient,
 		sdk._serverURL,

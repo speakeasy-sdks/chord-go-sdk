@@ -3,6 +3,7 @@
 package main
 
 import (
+    "log"
     "github.com/speakeasy-sdks/chord-go-sdk"
     "github.com/speakeasy-sdks/chord-go-sdk/pkg/models/shared"
     "github.com/speakeasy-sdks/chord-go-sdk/pkg/models/operations"
@@ -23,7 +24,7 @@ func main() {
     
     req := operations.FindWebhookAttempsRequest{
         QueryParams: operations.FindWebhookAttempsQueryParams{
-            Q: "sit",
+            Q: "unde",
         },
     }
     

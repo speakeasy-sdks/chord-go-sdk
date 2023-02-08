@@ -3,35 +3,35 @@ package sdk
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/chord-go-sdk/pkg/models/operations"
-	"github.com/speakeasy-sdks/chord-go-sdk/pkg/utils"
+	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/models/operations"
+	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/utils"
 	"net/http"
 )
 
-type StoreConfiguration struct {
-	_defaultClient  HTTPClient
-	_securityClient HTTPClient
-	_serverURL      string
-	_language       string
-	_sdkVersion     string
-	_genVersion     string
+type storeConfiguration struct {
+	defaultClient  HTTPClient
+	securityClient HTTPClient
+	serverURL      string
+	language       string
+	sdkVersion     string
+	genVersion     string
 }
 
-func NewStoreConfiguration(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *StoreConfiguration {
-	return &StoreConfiguration{
-		_defaultClient:  defaultClient,
-		_securityClient: securityClient,
-		_serverURL:      serverURL,
-		_language:       language,
-		_sdkVersion:     sdkVersion,
-		_genVersion:     genVersion,
+func newStoreConfiguration(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *storeConfiguration {
+	return &storeConfiguration{
+		defaultClient:  defaultClient,
+		securityClient: securityClient,
+		serverURL:      serverURL,
+		language:       language,
+		sdkVersion:     sdkVersion,
+		genVersion:     genVersion,
 	}
 }
 
 // GetAPIStoresStoreIDEnvironmentVariables - get Store Configuration
 // Gets the Store Configuration
-func (s *StoreConfiguration) GetAPIStoresStoreIDEnvironmentVariables(ctx context.Context, request operations.GetAPIStoresStoreIDEnvironmentVariablesRequest) (*operations.GetAPIStoresStoreIDEnvironmentVariablesResponse, error) {
-	baseURL := s._serverURL
+func (s *storeConfiguration) GetAPIStoresStoreIDEnvironmentVariables(ctx context.Context, request operations.GetAPIStoresStoreIDEnvironmentVariablesRequest) (*operations.GetAPIStoresStoreIDEnvironmentVariablesResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/api/stores/{store_id}/environment_variables", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -39,11 +39,14 @@ func (s *StoreConfiguration) GetAPIStoresStoreIDEnvironmentVariables(ctx context
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -71,8 +74,8 @@ func (s *StoreConfiguration) GetAPIStoresStoreIDEnvironmentVariables(ctx context
 
 // PatchAPIStoresStoreIDEnvironmentVariables - Update Store Configuration
 // Update the Store Configuration
-func (s *StoreConfiguration) PatchAPIStoresStoreIDEnvironmentVariables(ctx context.Context, request operations.PatchAPIStoresStoreIDEnvironmentVariablesRequest) (*operations.PatchAPIStoresStoreIDEnvironmentVariablesResponse, error) {
-	baseURL := s._serverURL
+func (s *storeConfiguration) PatchAPIStoresStoreIDEnvironmentVariables(ctx context.Context, request operations.PatchAPIStoresStoreIDEnvironmentVariablesRequest) (*operations.PatchAPIStoresStoreIDEnvironmentVariablesResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/api/stores/{store_id}/environment_variables", request.PathParams)
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
@@ -87,11 +90,14 @@ func (s *StoreConfiguration) PatchAPIStoresStoreIDEnvironmentVariables(ctx conte
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -119,8 +125,8 @@ func (s *StoreConfiguration) PatchAPIStoresStoreIDEnvironmentVariables(ctx conte
 
 // PostAPIStoresStoreIDEnvironmentVariables - Update Store Configuration
 // Update the Store Configuration
-func (s *StoreConfiguration) PostAPIStoresStoreIDEnvironmentVariables(ctx context.Context, request operations.PostAPIStoresStoreIDEnvironmentVariablesRequest) (*operations.PostAPIStoresStoreIDEnvironmentVariablesResponse, error) {
-	baseURL := s._serverURL
+func (s *storeConfiguration) PostAPIStoresStoreIDEnvironmentVariables(ctx context.Context, request operations.PostAPIStoresStoreIDEnvironmentVariablesRequest) (*operations.PostAPIStoresStoreIDEnvironmentVariablesResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/api/stores/{store_id}/environment_variables", request.PathParams)
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
@@ -135,11 +141,14 @@ func (s *StoreConfiguration) PostAPIStoresStoreIDEnvironmentVariables(ctx contex
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 

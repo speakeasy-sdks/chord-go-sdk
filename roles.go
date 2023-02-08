@@ -3,36 +3,36 @@ package sdk
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/chord-go-sdk/pkg/models/operations"
-	"github.com/speakeasy-sdks/chord-go-sdk/pkg/utils"
+	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/models/operations"
+	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/utils"
 	"net/http"
 	"strings"
 )
 
-type Roles struct {
-	_defaultClient  HTTPClient
-	_securityClient HTTPClient
-	_serverURL      string
-	_language       string
-	_sdkVersion     string
-	_genVersion     string
+type roles struct {
+	defaultClient  HTTPClient
+	securityClient HTTPClient
+	serverURL      string
+	language       string
+	sdkVersion     string
+	genVersion     string
 }
 
-func NewRoles(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *Roles {
-	return &Roles{
-		_defaultClient:  defaultClient,
-		_securityClient: securityClient,
-		_serverURL:      serverURL,
-		_language:       language,
-		_sdkVersion:     sdkVersion,
-		_genVersion:     genVersion,
+func newRoles(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *roles {
+	return &roles{
+		defaultClient:  defaultClient,
+		securityClient: securityClient,
+		serverURL:      serverURL,
+		language:       language,
+		sdkVersion:     sdkVersion,
+		genVersion:     genVersion,
 	}
 }
 
 // CreateRole - create Role
 // creates a Role. Users can be added to it by passing the role_users_attributes array with each user_id
-func (s *Roles) CreateRole(ctx context.Context, request operations.CreateRoleRequest) (*operations.CreateRoleResponse, error) {
-	baseURL := s._serverURL
+func (s *roles) CreateRole(ctx context.Context, request operations.CreateRoleRequest) (*operations.CreateRoleResponse, error) {
+	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/api/roles"
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
@@ -47,11 +47,14 @@ func (s *Roles) CreateRole(ctx context.Context, request operations.CreateRoleReq
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -70,8 +73,8 @@ func (s *Roles) CreateRole(ctx context.Context, request operations.CreateRoleReq
 
 // FindRoles - get all Roles
 // get all roles
-func (s *Roles) FindRoles(ctx context.Context) (*operations.FindRolesResponse, error) {
-	baseURL := s._serverURL
+func (s *roles) FindRoles(ctx context.Context) (*operations.FindRolesResponse, error) {
+	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/api/roles"
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -79,11 +82,14 @@ func (s *Roles) FindRoles(ctx context.Context) (*operations.FindRolesResponse, e
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -101,8 +107,8 @@ func (s *Roles) FindRoles(ctx context.Context) (*operations.FindRolesResponse, e
 }
 
 // GetAPIRolesID - retrieve Role
-func (s *Roles) GetAPIRolesID(ctx context.Context, request operations.GetAPIRolesIDRequest) (*operations.GetAPIRolesIDResponse, error) {
-	baseURL := s._serverURL
+func (s *roles) GetAPIRolesID(ctx context.Context, request operations.GetAPIRolesIDRequest) (*operations.GetAPIRolesIDResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/api/roles/{id}", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -110,11 +116,14 @@ func (s *Roles) GetAPIRolesID(ctx context.Context, request operations.GetAPIRole
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -144,8 +153,8 @@ func (s *Roles) GetAPIRolesID(ctx context.Context, request operations.GetAPIRole
 //
 //	Updates the given role. Users can be added / removed by adding a :users array with the ids.
 //	If a _destroy key is passed along with a truthy value, the user association will be removed if present
-func (s *Roles) PutAPIRolesID(ctx context.Context, request operations.PutAPIRolesIDRequest) (*operations.PutAPIRolesIDResponse, error) {
-	baseURL := s._serverURL
+func (s *roles) PutAPIRolesID(ctx context.Context, request operations.PutAPIRolesIDRequest) (*operations.PutAPIRolesIDResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/api/roles/{id}", request.PathParams)
 
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
@@ -160,11 +169,14 @@ func (s *Roles) PutAPIRolesID(ctx context.Context, request operations.PutAPIRole
 
 	req.Header.Set("Content-Type", reqContentType)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -186,8 +198,8 @@ func (s *Roles) PutAPIRolesID(ctx context.Context, request operations.PutAPIRole
 //
 //	Adds the User to the given role.
 //	If the user is already in the role, nothing is done and the role is simply returned
-func (s *Roles) PutAPIRolesIDAddUserID(ctx context.Context, request operations.PutAPIRolesIDAddUserIDRequest) (*operations.PutAPIRolesIDAddUserIDResponse, error) {
-	baseURL := s._serverURL
+func (s *roles) PutAPIRolesIDAddUserID(ctx context.Context, request operations.PutAPIRolesIDAddUserIDRequest) (*operations.PutAPIRolesIDAddUserIDResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/api/roles/{id}/add/{user_id}", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "PUT", url, nil)
@@ -195,11 +207,14 @@ func (s *Roles) PutAPIRolesIDAddUserID(ctx context.Context, request operations.P
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -221,8 +236,8 @@ func (s *Roles) PutAPIRolesIDAddUserID(ctx context.Context, request operations.P
 //
 //	Removes the User from the Role.
 //	If the user hasn't got the given Role, nothing is done and the role is simply returned
-func (s *Roles) PutAPIRolesIDRemoveUserID(ctx context.Context, request operations.PutAPIRolesIDRemoveUserIDRequest) (*operations.PutAPIRolesIDRemoveUserIDResponse, error) {
-	baseURL := s._serverURL
+func (s *roles) PutAPIRolesIDRemoveUserID(ctx context.Context, request operations.PutAPIRolesIDRemoveUserIDRequest) (*operations.PutAPIRolesIDRemoveUserIDResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/api/roles/{id}/remove/{user_id}", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "PUT", url, nil)
@@ -230,11 +245,14 @@ func (s *Roles) PutAPIRolesIDRemoveUserID(ctx context.Context, request operation
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 

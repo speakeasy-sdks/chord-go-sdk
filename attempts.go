@@ -3,36 +3,36 @@ package sdk
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/chord-go-sdk/pkg/models/operations"
-	"github.com/speakeasy-sdks/chord-go-sdk/pkg/utils"
+	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/models/operations"
+	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/utils"
 	"net/http"
 	"strings"
 )
 
-type Attempts struct {
-	_defaultClient  HTTPClient
-	_securityClient HTTPClient
-	_serverURL      string
-	_language       string
-	_sdkVersion     string
-	_genVersion     string
+type attempts struct {
+	defaultClient  HTTPClient
+	securityClient HTTPClient
+	serverURL      string
+	language       string
+	sdkVersion     string
+	genVersion     string
 }
 
-func NewAttempts(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *Attempts {
-	return &Attempts{
-		_defaultClient:  defaultClient,
-		_securityClient: securityClient,
-		_serverURL:      serverURL,
-		_language:       language,
-		_sdkVersion:     sdkVersion,
-		_genVersion:     genVersion,
+func newAttempts(defaultClient, securityClient HTTPClient, serverURL, language, sdkVersion, genVersion string) *attempts {
+	return &attempts{
+		defaultClient:  defaultClient,
+		securityClient: securityClient,
+		serverURL:      serverURL,
+		language:       language,
+		sdkVersion:     sdkVersion,
+		genVersion:     genVersion,
 	}
 }
 
 // FindWebhookAttemps - get all Webhook Attemps
 // get all webhook attempts
-func (s *Attempts) FindWebhookAttemps(ctx context.Context, request operations.FindWebhookAttempsRequest) (*operations.FindWebhookAttempsResponse, error) {
-	baseURL := s._serverURL
+func (s *attempts) FindWebhookAttemps(ctx context.Context, request operations.FindWebhookAttempsRequest) (*operations.FindWebhookAttempsResponse, error) {
+	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/api/webhook/attempts"
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -42,11 +42,14 @@ func (s *Attempts) FindWebhookAttemps(ctx context.Context, request operations.Fi
 
 	utils.PopulateQueryParams(ctx, req, request.QueryParams)
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
@@ -64,8 +67,8 @@ func (s *Attempts) FindWebhookAttemps(ctx context.Context, request operations.Fi
 }
 
 // GetAPIWebhookAttemptsID - retrieve Attempt
-func (s *Attempts) GetAPIWebhookAttemptsID(ctx context.Context, request operations.GetAPIWebhookAttemptsIDRequest) (*operations.GetAPIWebhookAttemptsIDResponse, error) {
-	baseURL := s._serverURL
+func (s *attempts) GetAPIWebhookAttemptsID(ctx context.Context, request operations.GetAPIWebhookAttemptsIDRequest) (*operations.GetAPIWebhookAttemptsIDResponse, error) {
+	baseURL := s.serverURL
 	url := utils.GenerateURL(ctx, baseURL, "/api/webhook/attempts/{id}", request.PathParams)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
@@ -73,11 +76,14 @@ func (s *Attempts) GetAPIWebhookAttemptsID(ctx context.Context, request operatio
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	client := s._securityClient
+	client := s.securityClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
 	}
 	defer httpRes.Body.Close()
 
