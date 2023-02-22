@@ -61,7 +61,7 @@ func (s *endpoint) CreateEndpoint(ctx context.Context, request operations.Create
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CreateEndpointResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -95,7 +95,7 @@ func (s *endpoint) DeleteAPIWebhookEndpointsID(ctx context.Context, request oper
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.DeleteAPIWebhookEndpointsIDResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

@@ -61,7 +61,7 @@ func (s *tag) CreateTag(ctx context.Context, request operations.CreateTagRequest
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CreateTagResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

@@ -10,5 +10,5 @@ type GetSubscriptionRequest struct {
 
 type GetSubscriptionResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }

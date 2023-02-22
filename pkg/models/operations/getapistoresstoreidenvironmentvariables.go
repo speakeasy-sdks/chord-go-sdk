@@ -17,6 +17,6 @@ type GetAPIStoresStoreIDEnvironmentVariables200ApplicationJSON struct {
 
 type GetAPIStoresStoreIDEnvironmentVariablesResponse struct {
 	ContentType                                                     string
-	StatusCode                                                      int64
+	StatusCode                                                      int
 	GetAPIStoresStoreIDEnvironmentVariables200ApplicationJSONObject *GetAPIStoresStoreIDEnvironmentVariables200ApplicationJSON
 }

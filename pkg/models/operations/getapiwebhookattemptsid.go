@@ -19,6 +19,6 @@ type GetAPIWebhookAttemptsID200ApplicationJSON struct {
 
 type GetAPIWebhookAttemptsIDResponse struct {
 	ContentType                                     string
-	StatusCode                                      int64
+	StatusCode                                      int
 	GetAPIWebhookAttemptsID200ApplicationJSONObject *GetAPIWebhookAttemptsID200ApplicationJSON
 }

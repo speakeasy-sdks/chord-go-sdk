@@ -10,5 +10,5 @@ type FindWebhookAttempsRequest struct {
 
 type FindWebhookAttempsResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }

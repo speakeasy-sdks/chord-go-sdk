@@ -61,7 +61,7 @@ func (s *roles) CreateRole(ctx context.Context, request operations.CreateRoleReq
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.CreateRoleResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -96,7 +96,7 @@ func (s *roles) FindRoles(ctx context.Context) (*operations.FindRolesResponse, e
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindRolesResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -130,7 +130,7 @@ func (s *roles) GetAPIRolesID(ctx context.Context, request operations.GetAPIRole
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetAPIRolesIDResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -183,7 +183,7 @@ func (s *roles) PutAPIRolesID(ctx context.Context, request operations.PutAPIRole
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.PutAPIRolesIDResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -221,7 +221,7 @@ func (s *roles) PutAPIRolesIDAddUserID(ctx context.Context, request operations.P
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.PutAPIRolesIDAddUserIDResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -259,7 +259,7 @@ func (s *roles) PutAPIRolesIDRemoveUserID(ctx context.Context, request operation
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.PutAPIRolesIDRemoveUserIDResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

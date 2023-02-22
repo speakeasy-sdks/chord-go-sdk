@@ -10,5 +10,5 @@ type GetStatesByIDRequest struct {
 
 type GetStatesByIDResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }

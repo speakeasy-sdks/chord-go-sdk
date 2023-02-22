@@ -11,5 +11,5 @@ type PutAPITagsIDAddToOrderNumberRequest struct {
 
 type PutAPITagsIDAddToOrderNumberResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }

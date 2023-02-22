@@ -10,5 +10,5 @@ type DeleteAPIWebhookEndpointsIDRequest struct {
 
 type DeleteAPIWebhookEndpointsIDResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }

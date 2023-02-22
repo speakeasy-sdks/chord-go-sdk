@@ -22,6 +22,6 @@ type PostAPIStoresStoreIDEnvironmentVariables201ApplicationJSON struct {
 
 type PostAPIStoresStoreIDEnvironmentVariablesResponse struct {
 	ContentType                                                      string
-	StatusCode                                                       int64
+	StatusCode                                                       int
 	PostAPIStoresStoreIDEnvironmentVariables201ApplicationJSONObject *PostAPIStoresStoreIDEnvironmentVariables201ApplicationJSON
 }

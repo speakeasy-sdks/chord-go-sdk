@@ -15,5 +15,5 @@ type CreateStockRequestRequest struct {
 
 type CreateStockRequestResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }

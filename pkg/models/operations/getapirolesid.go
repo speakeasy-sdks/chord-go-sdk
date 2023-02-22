@@ -20,6 +20,6 @@ type GetAPIRolesID200ApplicationJSON struct {
 
 type GetAPIRolesIDResponse struct {
 	ContentType                           string
-	StatusCode                            int64
+	StatusCode                            int
 	GetAPIRolesID200ApplicationJSONObject *GetAPIRolesID200ApplicationJSON
 }

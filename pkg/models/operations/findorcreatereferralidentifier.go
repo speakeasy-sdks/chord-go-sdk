@@ -10,5 +10,5 @@ type FindOrCreateReferralIdentifierRequest struct {
 
 type FindOrCreateReferralIdentifierResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }

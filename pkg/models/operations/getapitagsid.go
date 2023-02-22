@@ -19,6 +19,6 @@ type GetAPITagsID200ApplicationJSON struct {
 
 type GetAPITagsIDResponse struct {
 	ContentType                          string
-	StatusCode                           int64
+	StatusCode                           int
 	GetAPITagsID200ApplicationJSONObject *GetAPITagsID200ApplicationJSON
 }

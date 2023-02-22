@@ -19,5 +19,5 @@ type CreateRoleRequest struct {
 
 type CreateRoleResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }

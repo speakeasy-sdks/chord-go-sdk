@@ -25,5 +25,5 @@ type PutAPIRolesIDRequest struct {
 
 type PutAPIRolesIDResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }

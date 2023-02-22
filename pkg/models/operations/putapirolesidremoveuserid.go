@@ -11,5 +11,5 @@ type PutAPIRolesIDRemoveUserIDRequest struct {
 
 type PutAPIRolesIDRemoveUserIDResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }

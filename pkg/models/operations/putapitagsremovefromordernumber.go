@@ -15,5 +15,5 @@ type PutAPITagsRemoveFromOrderNumberRequest struct {
 
 type PutAPITagsRemoveFromOrderNumberResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }

@@ -53,7 +53,7 @@ func (s *storeConfiguration) GetAPIStoresStoreIDEnvironmentVariables(ctx context
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetAPIStoresStoreIDEnvironmentVariablesResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -104,7 +104,7 @@ func (s *storeConfiguration) PatchAPIStoresStoreIDEnvironmentVariables(ctx conte
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.PatchAPIStoresStoreIDEnvironmentVariablesResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -155,7 +155,7 @@ func (s *storeConfiguration) PostAPIStoresStoreIDEnvironmentVariables(ctx contex
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.PostAPIStoresStoreIDEnvironmentVariablesResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

@@ -27,6 +27,6 @@ type PutAPIWebhookEndpointsID200ApplicationJSON struct {
 
 type PutAPIWebhookEndpointsIDResponse struct {
 	ContentType                                      string
-	StatusCode                                       int64
+	StatusCode                                       int
 	PutAPIWebhookEndpointsID200ApplicationJSONObject *PutAPIWebhookEndpointsID200ApplicationJSON
 }

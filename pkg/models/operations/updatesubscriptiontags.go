@@ -15,5 +15,5 @@ type UpdateSubscriptionTagsRequest struct {
 
 type UpdateSubscriptionTagsResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }

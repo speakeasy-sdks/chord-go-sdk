@@ -11,5 +11,5 @@ type PostAPISolidusImporterImportsRequest struct {
 
 type PostAPISolidusImporterImportsResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }

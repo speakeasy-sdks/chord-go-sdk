@@ -54,7 +54,7 @@ func (s *state) GetStatesByID(ctx context.Context, request operations.GetStatesB
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetStatesByIDResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -89,7 +89,7 @@ func (s *state) ListStates(ctx context.Context) (*operations.ListStatesResponse,
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.ListStatesResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

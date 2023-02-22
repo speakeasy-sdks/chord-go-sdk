@@ -28,6 +28,6 @@ type PutAPITagsID200ApplicationJSON struct {
 
 type PutAPITagsIDResponse struct {
 	ContentType                          string
-	StatusCode                           int64
+	StatusCode                           int
 	PutAPITagsID200ApplicationJSONObject *PutAPITagsID200ApplicationJSON
 }

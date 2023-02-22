@@ -60,7 +60,7 @@ func (s *referralIdentifier) FindOrCreateReferralIdentifier(ctx context.Context,
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindOrCreateReferralIdentifierResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

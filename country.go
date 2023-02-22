@@ -54,7 +54,7 @@ func (s *country) GetCountryByID(ctx context.Context, request operations.GetCoun
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetCountryByIDResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {
@@ -89,7 +89,7 @@ func (s *country) ListCountries(ctx context.Context) (*operations.ListCountriesR
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.ListCountriesResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

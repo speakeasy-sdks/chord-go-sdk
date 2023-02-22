@@ -10,5 +10,5 @@ type FindRemindersRequest struct {
 
 type FindRemindersResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }

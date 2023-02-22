@@ -53,7 +53,7 @@ func (s *walletPaymentSource) ListWalletPaymentSource(ctx context.Context) (*ope
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.ListWalletPaymentSourceResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 	}
 	switch {

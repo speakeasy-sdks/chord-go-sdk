@@ -22,6 +22,6 @@ type PatchAPIStoresStoreIDEnvironmentVariables201ApplicationJSON struct {
 
 type PatchAPIStoresStoreIDEnvironmentVariablesResponse struct {
 	ContentType                                                       string
-	StatusCode                                                        int64
+	StatusCode                                                        int
 	PatchAPIStoresStoreIDEnvironmentVariables201ApplicationJSONObject *PatchAPIStoresStoreIDEnvironmentVariables201ApplicationJSON
 }

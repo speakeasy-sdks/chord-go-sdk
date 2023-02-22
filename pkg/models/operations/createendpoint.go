@@ -17,5 +17,5 @@ type CreateEndpointRequest struct {
 
 type CreateEndpointResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
 }
