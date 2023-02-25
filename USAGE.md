@@ -3,6 +3,7 @@
 package main
 
 import (
+    "context"
     "log"
     "github.com/speakeasy-sdks/chord-go-sdk"
     "github.com/speakeasy-sdks/chord-go-sdk/pkg/models/shared"
@@ -16,7 +17,7 @@ func main() {
                 BearerAuth: shared.SchemeBearerAuth{
                     Authorization: "Bearer YOUR_BEARER_TOKEN_HERE",
                 },
-            }
+            },
         ),
     }
 
@@ -27,7 +28,8 @@ func main() {
             Q: "unde",
         },
     }
-    
+
+    ctx := context.Background()
     res, err := s.Attempts.FindWebhookAttemps(ctx, req)
     if err != nil {
         log.Fatal(err)
@@ -36,5 +38,6 @@ func main() {
     if res.StatusCode == http.StatusOK {
         // handle response
     }
+}
 ```
 <!-- End SDK Example Usage -->
