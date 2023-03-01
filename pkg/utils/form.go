@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/types"
+	"undefined/v2/pkg/types"
 )
 
 func populateForm(paramName string, explode bool, objType reflect.Type, objValue reflect.Value, getFieldName func(reflect.StructField) string) url.Values {

@@ -5,23 +5,19 @@ package main
 import (
     "context"
     "log"
-    "github.com/speakeasy-sdks/chord-go-sdk"
-    "github.com/speakeasy-sdks/chord-go-sdk/pkg/models/shared"
-    "github.com/speakeasy-sdks/chord-go-sdk/pkg/models/operations"
+    "<no value>"
+    "<no value>/pkg/models/shared"
+    "<no value>/pkg/models/operations"
 )
 
 func main() {
-    opts := []sdk.SDKOption{
-        sdk.WithSecurity(
-            shared.Security{
-                BearerAuth: shared.SchemeBearerAuth{
-                    Authorization: "Bearer YOUR_BEARER_TOKEN_HERE",
-                },
+    s := sdk.New(sdk.WithSecurity(
+        shared.Security{
+            BearerAuth: shared.SchemeBearerAuth{
+                Authorization: "Bearer YOUR_BEARER_TOKEN_HERE",
             },
-        ),
-    }
-
-    s := sdk.New(opts...)
+        },
+    ))
     
     req := operations.FindWebhookAttempsRequest{
         QueryParams: operations.FindWebhookAttempsQueryParams{

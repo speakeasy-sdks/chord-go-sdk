@@ -3,10 +3,10 @@ package sdk
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/models/operations"
-	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/utils"
 	"net/http"
 	"strings"
+	"undefined/v2/pkg/models/operations"
+	"undefined/v2/pkg/utils"
 )
 
 type imports struct {

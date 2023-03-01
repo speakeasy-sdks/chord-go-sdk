@@ -3,9 +3,9 @@ package sdk
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/models/operations"
 	"net/http"
 	"strings"
+	"undefined/v2/pkg/models/operations"
 )
 
 type walletPaymentSource struct {

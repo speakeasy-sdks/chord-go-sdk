@@ -1,10 +1,10 @@
 package sdk
 
 import (
-	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/models/shared"
-	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/utils"
 	"net/http"
 	"time"
+	"undefined/v2/pkg/models/shared"
+	"undefined/v2/pkg/utils"
 )
 
 var ServerList = []string{
@@ -69,8 +69,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
 		_language:   "go",
-		_sdkVersion: "2.5.2",
-		_genVersion: "1.5.4",
+		_sdkVersion: "2.6.0",
+		_genVersion: "1.6.0",
 	}
 	for _, opt := range opts {
 		opt(sdk)

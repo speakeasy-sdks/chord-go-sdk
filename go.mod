@@ -1,4 +1,4 @@
-module github.com/speakeasy-sdks/chord-go-sdk/v2
+module undefined/v2
 
 go 1.14
 
