@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"openapi/v2/pkg/models/operations"
 	"strings"
-	"undefined/v2/pkg/models/operations"
 )
 
 type walletPaymentSource struct {

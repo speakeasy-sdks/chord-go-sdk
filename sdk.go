@@ -2,9 +2,9 @@ package sdk
 
 import (
 	"net/http"
+	"openapi/v2/pkg/models/shared"
+	"openapi/v2/pkg/utils"
 	"time"
-	"undefined/v2/pkg/models/shared"
-	"undefined/v2/pkg/utils"
 )
 
 var ServerList = []string{
@@ -69,8 +69,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
 		_language:   "go",
-		_sdkVersion: "2.6.0",
-		_genVersion: "1.6.0",
+		_sdkVersion: "2.7.0",
+		_genVersion: "1.7.1",
 	}
 	for _, opt := range opts {
 		opt(sdk)

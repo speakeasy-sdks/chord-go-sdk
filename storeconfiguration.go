@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"undefined/v2/pkg/models/operations"
-	"undefined/v2/pkg/utils"
+	"openapi/v2/pkg/models/operations"
+	"openapi/v2/pkg/utils"
 )
 
 type storeConfiguration struct {

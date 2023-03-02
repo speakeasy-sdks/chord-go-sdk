@@ -5,9 +5,9 @@ package main
 import (
     "context"
     "log"
-    "<no value>"
-    "<no value>/pkg/models/shared"
-    "<no value>/pkg/models/operations"
+    "openapi"
+    "openapi/pkg/models/shared"
+    "openapi/pkg/models/operations"
 )
 
 func main() {

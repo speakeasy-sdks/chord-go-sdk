@@ -6,7 +6,7 @@ Chord’s headless e-commerce and data platform empower you to build bespoke, be
 ## SDK Installation
 
 ```bash
-go get <no value>
+go get openapi
 ```
 <!-- End SDK Installation -->
 
@@ -18,9 +18,9 @@ package main
 import (
     "context"
     "log"
-    "<no value>"
-    "<no value>/pkg/models/shared"
-    "<no value>/pkg/models/operations"
+    "openapi"
+    "openapi/pkg/models/shared"
+    "openapi/pkg/models/operations"
 )
 
 func main() {

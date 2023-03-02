@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"openapi/v2/pkg/models/operations"
+	"openapi/v2/pkg/utils"
 	"strings"
-	"undefined/v2/pkg/models/operations"
-	"undefined/v2/pkg/utils"
 )
 
 type endpoints struct {

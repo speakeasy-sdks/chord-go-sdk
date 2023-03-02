@@ -1,4 +1,4 @@
-module undefined/v2
+module openapi/v2
 
 go 1.14
 
