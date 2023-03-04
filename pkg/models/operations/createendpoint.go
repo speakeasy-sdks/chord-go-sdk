@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type CreateEndpointRequestBodyEndpoint struct {
 	Events    []string `json:"events"`
 	Filters   []string `json:"filters,omitempty"`
@@ -18,4 +22,5 @@ type CreateEndpointRequest struct {
 type CreateEndpointResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

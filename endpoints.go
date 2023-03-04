@@ -60,6 +60,7 @@ func (s *endpoints) FindWebhookEndpoints(ctx context.Context, request operations
 	res := &operations.FindWebhookEndpointsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -98,6 +99,7 @@ func (s *endpoints) GetAPIWebhookEndpointsID(ctx context.Context, request operat
 	res := &operations.GetAPIWebhookEndpointsIDResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -148,6 +150,7 @@ func (s *endpoints) PutAPIWebhookEndpointsID(ctx context.Context, request operat
 	res := &operations.PutAPIWebhookEndpointsIDResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

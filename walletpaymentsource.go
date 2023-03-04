@@ -55,6 +55,7 @@ func (s *walletPaymentSource) ListWalletPaymentSource(ctx context.Context) (*ope
 	res := &operations.ListWalletPaymentSourceResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

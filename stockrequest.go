@@ -62,6 +62,7 @@ func (s *stockRequest) CreateStockRequest(ctx context.Context, request operation
 	res := &operations.CreateStockRequestResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:

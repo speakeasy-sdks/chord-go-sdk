@@ -60,6 +60,7 @@ func (s *attempts) FindWebhookAttemps(ctx context.Context, request operations.Fi
 	res := &operations.FindWebhookAttempsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -94,6 +95,7 @@ func (s *attempts) GetAPIWebhookAttemptsID(ctx context.Context, request operatio
 	res := &operations.GetAPIWebhookAttemptsIDResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

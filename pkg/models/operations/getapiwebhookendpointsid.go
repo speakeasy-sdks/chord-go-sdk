@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type GetAPIWebhookEndpointsIDPathParams struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
@@ -25,5 +29,6 @@ type GetAPIWebhookEndpointsID200ApplicationJSON struct {
 type GetAPIWebhookEndpointsIDResponse struct {
 	ContentType                                      string
 	StatusCode                                       int
+	RawResponse                                      *http.Response
 	GetAPIWebhookEndpointsID200ApplicationJSONObject *GetAPIWebhookEndpointsID200ApplicationJSON
 }

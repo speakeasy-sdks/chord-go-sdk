@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type FindWebhookEndpointsQueryParams struct {
 	AttemptsCount   *int64  `queryParam:"style=form,explode=true,name=attempts_count"`
 	IncludeAttempts *bool   `queryParam:"style=form,explode=true,name=include_attempts"`
@@ -13,4 +17,5 @@ type FindWebhookEndpointsRequest struct {
 type FindWebhookEndpointsResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

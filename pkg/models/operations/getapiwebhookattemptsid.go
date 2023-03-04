@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type GetAPIWebhookAttemptsIDPathParams struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
@@ -20,5 +24,6 @@ type GetAPIWebhookAttemptsID200ApplicationJSON struct {
 type GetAPIWebhookAttemptsIDResponse struct {
 	ContentType                                     string
 	StatusCode                                      int
+	RawResponse                                     *http.Response
 	GetAPIWebhookAttemptsID200ApplicationJSONObject *GetAPIWebhookAttemptsID200ApplicationJSON
 }

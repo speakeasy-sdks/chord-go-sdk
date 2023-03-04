@@ -60,6 +60,7 @@ func (s *reminders) FindReminders(ctx context.Context, request operations.FindRe
 	res := &operations.FindRemindersResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

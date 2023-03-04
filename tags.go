@@ -56,6 +56,7 @@ func (s *tags) FindTags(ctx context.Context) (*operations.FindTagsResponse, erro
 	res := &operations.FindTagsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -90,6 +91,7 @@ func (s *tags) GetAPITagsID(ctx context.Context, request operations.GetAPITagsID
 	res := &operations.GetAPITagsIDResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -141,6 +143,7 @@ func (s *tags) PutAPITagsAddToOrderNumber(ctx context.Context, request operation
 	res := &operations.PutAPITagsAddToOrderNumberResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -182,6 +185,7 @@ func (s *tags) PutAPITagsAddToOrders(ctx context.Context, request operations.Put
 	res := &operations.PutAPITagsAddToOrdersResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -224,6 +228,7 @@ func (s *tags) PutAPITagsRemoveFromOrderNumber(ctx context.Context, request oper
 	res := &operations.PutAPITagsRemoveFromOrderNumberResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -265,6 +270,7 @@ func (s *tags) PutAPITagsID(ctx context.Context, request operations.PutAPITagsID
 	res := &operations.PutAPITagsIDResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -309,6 +315,7 @@ func (s *tags) PutAPITagsIDRemoveFromOrderNumber(ctx context.Context, request op
 	res := &operations.PutAPITagsIDRemoveFromOrderNumberResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -344,6 +351,7 @@ func (s *tags) PutAPITagsIDAddToOrderNumber(ctx context.Context, request operati
 	res := &operations.PutAPITagsIDAddToOrderNumberResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

@@ -56,6 +56,7 @@ func (s *state) GetStatesByID(ctx context.Context, request operations.GetStatesB
 	res := &operations.GetStatesByIDResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -91,6 +92,7 @@ func (s *state) ListStates(ctx context.Context) (*operations.ListStatesResponse,
 	res := &operations.ListStatesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

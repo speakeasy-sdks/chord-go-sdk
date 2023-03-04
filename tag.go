@@ -63,6 +63,7 @@ func (s *tag) CreateTag(ctx context.Context, request operations.CreateTagRequest
 	res := &operations.CreateTagResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

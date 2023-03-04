@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type CreateRoleRequestBodyRoleRoleUsersAttributes struct {
 	UserID *int64 `json:"user_id,omitempty"`
 }
@@ -20,4 +24,5 @@ type CreateRoleRequest struct {
 type CreateRoleResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

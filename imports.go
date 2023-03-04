@@ -62,6 +62,7 @@ func (s *imports) PostAPISolidusImporterImports(ctx context.Context, request ope
 	res := &operations.PostAPISolidusImporterImportsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:

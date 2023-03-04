@@ -55,6 +55,7 @@ func (s *storeConfiguration) GetAPIStoresStoreIDEnvironmentVariables(ctx context
 	res := &operations.GetAPIStoresStoreIDEnvironmentVariablesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -106,6 +107,7 @@ func (s *storeConfiguration) PatchAPIStoresStoreIDEnvironmentVariables(ctx conte
 	res := &operations.PatchAPIStoresStoreIDEnvironmentVariablesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:
@@ -157,6 +159,7 @@ func (s *storeConfiguration) PostAPIStoresStoreIDEnvironmentVariables(ctx contex
 	res := &operations.PostAPIStoresStoreIDEnvironmentVariablesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:

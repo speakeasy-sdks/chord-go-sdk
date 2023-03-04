@@ -15,6 +15,9 @@ type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
 
+// String provides a helper function to return a pointer to a string
+func String(s string) *string { return &s }
+
 type SDK struct {
 	Attempts            *attempts
 	Country             *country
@@ -44,7 +47,13 @@ type SDK struct {
 
 type SDKOption func(*SDK)
 
-func WithServerURL(serverURL string, params map[string]string) SDKOption {
+func WithServerURL(serverURL string) SDKOption {
+	return func(sdk *SDK) {
+		sdk._serverURL = serverURL
+	}
+}
+
+func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOption {
 	return func(sdk *SDK) {
 		if params != nil {
 			serverURL = utils.ReplaceParameters(serverURL, params)
@@ -69,8 +78,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
 		_language:   "go",
-		_sdkVersion: "2.7.0",
-		_genVersion: "1.7.1",
+		_sdkVersion: "2.8.0",
+		_genVersion: "1.8.2",
 	}
 	for _, opt := range opts {
 		opt(sdk)

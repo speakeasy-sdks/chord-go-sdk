@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type PutAPITagsAddToOrdersRequestBody struct {
 	Orders []string `json:"orders,omitempty"`
 	Tags   []string `json:"tags,omitempty"`
@@ -12,4 +16,5 @@ type PutAPITagsAddToOrdersRequest struct {
 type PutAPITagsAddToOrdersResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

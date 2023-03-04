@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type FindOrCreateReferralIdentifierRequestBody struct {
 	Email string `json:"email"`
 }
@@ -11,4 +15,5 @@ type FindOrCreateReferralIdentifierRequest struct {
 type FindOrCreateReferralIdentifierResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

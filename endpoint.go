@@ -63,6 +63,7 @@ func (s *endpoint) CreateEndpoint(ctx context.Context, request operations.Create
 	res := &operations.CreateEndpointResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:
@@ -97,6 +98,7 @@ func (s *endpoint) DeleteAPIWebhookEndpointsID(ctx context.Context, request oper
 	res := &operations.DeleteAPIWebhookEndpointsIDResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 204:

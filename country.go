@@ -56,6 +56,7 @@ func (s *country) GetCountryByID(ctx context.Context, request operations.GetCoun
 	res := &operations.GetCountryByIDResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -91,6 +92,7 @@ func (s *country) ListCountries(ctx context.Context) (*operations.ListCountriesR
 	res := &operations.ListCountriesResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

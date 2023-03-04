@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type PutAPITagsAddToOrderNumberPathParams struct {
 	OrderNumber string `pathParam:"style=simple,explode=false,name=order_number"`
 }
@@ -16,4 +20,5 @@ type PutAPITagsAddToOrderNumberRequest struct {
 type PutAPITagsAddToOrderNumberResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

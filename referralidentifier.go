@@ -62,6 +62,7 @@ func (s *referralIdentifier) FindOrCreateReferralIdentifier(ctx context.Context,
 	res := &operations.FindOrCreateReferralIdentifierResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

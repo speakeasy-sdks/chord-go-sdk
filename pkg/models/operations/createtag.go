@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type CreateTagRequestBodyTag struct {
 	Name string `json:"name"`
 }
@@ -15,4 +19,5 @@ type CreateTagRequest struct {
 type CreateTagResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

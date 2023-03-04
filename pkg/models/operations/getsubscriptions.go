@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type GetSubscriptionsQueryParams struct {
 	Q *string `queryParam:"style=form,explode=true,name=q"`
 }
@@ -11,4 +15,5 @@ type GetSubscriptionsRequest struct {
 type GetSubscriptionsResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

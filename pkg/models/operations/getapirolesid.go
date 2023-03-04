@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type GetAPIRolesIDPathParams struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
@@ -21,5 +25,6 @@ type GetAPIRolesID200ApplicationJSON struct {
 type GetAPIRolesIDResponse struct {
 	ContentType                           string
 	StatusCode                            int
+	RawResponse                           *http.Response
 	GetAPIRolesID200ApplicationJSONObject *GetAPIRolesID200ApplicationJSON
 }

@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type CreateStockRequestRequestBodyStockRequest struct {
 	Email string `json:"email"`
 	Sku   string `json:"sku"`
@@ -16,4 +20,5 @@ type CreateStockRequestRequest struct {
 type CreateStockRequestResponse struct {
 	ContentType string
 	StatusCode  int
+	RawResponse *http.Response
 }

@@ -63,6 +63,7 @@ func (s *subscriptionTags) CreateSubscriptionTags(ctx context.Context, request o
 	res := &operations.CreateSubscriptionTagsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:
@@ -99,6 +100,7 @@ func (s *subscriptionTags) DeleteSubscriptionTags(ctx context.Context, request o
 	res := &operations.DeleteSubscriptionTagsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -134,6 +136,7 @@ func (s *subscriptionTags) GetSubscription(ctx context.Context, request operatio
 	res := &operations.GetSubscriptionResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -173,6 +176,7 @@ func (s *subscriptionTags) GetSubscriptions(ctx context.Context, request operati
 	res := &operations.GetSubscriptionsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -215,6 +219,7 @@ func (s *subscriptionTags) UpdateSubscriptionTags(ctx context.Context, request o
 	res := &operations.UpdateSubscriptionTagsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
