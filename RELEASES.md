@@ -95,3 +95,11 @@ Based on:
 - Speakeasy CLI 1.8.2 https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Go v2.8.0] https://github.com/speakeasy-sdks/chord-go-sdk/releases/tag/v2.8.0 - .
+
+## Version 2.8.1
+### Changes
+Based on:
+- OpenAPI Doc v1 chord.yaml
+- Speakeasy CLI 1.8.4 https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v2.8.1] https://github.com/speakeasy-sdks/chord-go-sdk/releases/tag/v2.8.1 - .
