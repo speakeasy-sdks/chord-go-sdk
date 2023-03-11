@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type PutAPITagsRemoveFromOrderNumberPathParams struct {
 	OrderNumber string `pathParam:"style=simple,explode=false,name=order_number"`
 }
@@ -15,5 +19,6 @@ type PutAPITagsRemoveFromOrderNumberRequest struct {
 
 type PutAPITagsRemoveFromOrderNumberResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
+	RawResponse *http.Response
 }

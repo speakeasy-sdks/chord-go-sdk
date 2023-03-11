@@ -3,9 +3,9 @@ package sdk
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/models/operations"
-	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/utils"
 	"net/http"
+	"openapi/v2/pkg/models/operations"
+	"openapi/v2/pkg/utils"
 	"strings"
 )
 
@@ -60,8 +60,9 @@ func (s *imports) PostAPISolidusImporterImports(ctx context.Context, request ope
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.PostAPISolidusImporterImportsResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:

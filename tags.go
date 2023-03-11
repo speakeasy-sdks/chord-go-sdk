@@ -3,9 +3,9 @@ package sdk
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/models/operations"
-	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/utils"
 	"net/http"
+	"openapi/v2/pkg/models/operations"
+	"openapi/v2/pkg/utils"
 	"strings"
 )
 
@@ -54,8 +54,9 @@ func (s *tags) FindTags(ctx context.Context) (*operations.FindTagsResponse, erro
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindTagsResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -88,8 +89,9 @@ func (s *tags) GetAPITagsID(ctx context.Context, request operations.GetAPITagsID
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetAPITagsIDResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -139,8 +141,9 @@ func (s *tags) PutAPITagsAddToOrderNumber(ctx context.Context, request operation
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.PutAPITagsAddToOrderNumberResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -180,8 +183,9 @@ func (s *tags) PutAPITagsAddToOrders(ctx context.Context, request operations.Put
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.PutAPITagsAddToOrdersResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -222,8 +226,9 @@ func (s *tags) PutAPITagsRemoveFromOrderNumber(ctx context.Context, request oper
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.PutAPITagsRemoveFromOrderNumberResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -263,8 +268,9 @@ func (s *tags) PutAPITagsID(ctx context.Context, request operations.PutAPITagsID
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.PutAPITagsIDResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -307,8 +313,9 @@ func (s *tags) PutAPITagsIDRemoveFromOrderNumber(ctx context.Context, request op
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.PutAPITagsIDRemoveFromOrderNumberResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -342,8 +349,9 @@ func (s *tags) PutAPITagsIDAddToOrderNumber(ctx context.Context, request operati
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.PutAPITagsIDAddToOrderNumberResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

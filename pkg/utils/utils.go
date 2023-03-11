@@ -7,6 +7,7 @@ import (
 	"reflect"
 	"regexp"
 	"strings"
+	"time"
 )
 
 const (
@@ -34,6 +35,15 @@ func ReplaceParameters(stringWithParams string, params map[string]string) string
 		match = match[1 : len(match)-1]
 		return params[match]
 	})
+}
+
+func Contains(slice []string, item string) bool {
+	for _, s := range slice {
+		if s == item {
+			return true
+		}
+	}
+	return false
 }
 
 func parseStructTag(tagKey string, field reflect.StructField) map[string]string {
@@ -90,4 +100,13 @@ func parseParamTag(tagKey string, field reflect.StructField, defaultStyle string
 	}
 
 	return tag
+}
+
+func valToString(val interface{}) string {
+	switch v := val.(type) {
+	case time.Time:
+		return v.Format(time.RFC3339Nano)
+	default:
+		return fmt.Sprintf("%v", v)
+	}
 }

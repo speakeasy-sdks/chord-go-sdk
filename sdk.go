@@ -1,9 +1,9 @@
 package sdk
 
 import (
-	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/models/shared"
-	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/utils"
 	"net/http"
+	"openapi/v2/pkg/models/shared"
+	"openapi/v2/pkg/utils"
 	"time"
 )
 
@@ -14,6 +14,9 @@ var ServerList = []string{
 type HTTPClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
+
+// String provides a helper function to return a pointer to a string
+func String(s string) *string { return &s }
 
 type SDK struct {
 	Attempts            *attempts
@@ -44,7 +47,13 @@ type SDK struct {
 
 type SDKOption func(*SDK)
 
-func WithServerURL(serverURL string, params map[string]string) SDKOption {
+func WithServerURL(serverURL string) SDKOption {
+	return func(sdk *SDK) {
+		sdk._serverURL = serverURL
+	}
+}
+
+func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOption {
 	return func(sdk *SDK) {
 		if params != nil {
 			serverURL = utils.ReplaceParameters(serverURL, params)
@@ -69,8 +78,8 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *SDK {
 	sdk := &SDK{
 		_language:   "go",
-		_sdkVersion: "2.1.0",
-		_genVersion: "1.1.1",
+		_sdkVersion: "2.9.1",
+		_genVersion: "1.9.2",
 	}
 	for _, opt := range opts {
 		opt(sdk)

@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type PostAPIStoresStoreIDEnvironmentVariablesPathParams struct {
 	StoreID int64 `pathParam:"style=simple,explode=false,name=store_id"`
 }
@@ -22,6 +26,7 @@ type PostAPIStoresStoreIDEnvironmentVariables201ApplicationJSON struct {
 
 type PostAPIStoresStoreIDEnvironmentVariablesResponse struct {
 	ContentType                                                      string
-	StatusCode                                                       int64
+	StatusCode                                                       int
+	RawResponse                                                      *http.Response
 	PostAPIStoresStoreIDEnvironmentVariables201ApplicationJSONObject *PostAPIStoresStoreIDEnvironmentVariables201ApplicationJSON
 }

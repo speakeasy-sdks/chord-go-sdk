@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type FindRemindersQueryParams struct {
 	Q *string `queryParam:"style=form,explode=true,name=q"`
 }
@@ -10,5 +14,6 @@ type FindRemindersRequest struct {
 
 type FindRemindersResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
+	RawResponse *http.Response
 }

@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type PutAPITagsIDPathParams struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
@@ -28,6 +32,7 @@ type PutAPITagsID200ApplicationJSON struct {
 
 type PutAPITagsIDResponse struct {
 	ContentType                          string
-	StatusCode                           int64
+	StatusCode                           int
+	RawResponse                          *http.Response
 	PutAPITagsID200ApplicationJSONObject *PutAPITagsID200ApplicationJSON
 }

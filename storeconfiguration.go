@@ -3,9 +3,9 @@ package sdk
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/models/operations"
-	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/utils"
 	"net/http"
+	"openapi/v2/pkg/models/operations"
+	"openapi/v2/pkg/utils"
 )
 
 type storeConfiguration struct {
@@ -53,8 +53,9 @@ func (s *storeConfiguration) GetAPIStoresStoreIDEnvironmentVariables(ctx context
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetAPIStoresStoreIDEnvironmentVariablesResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -104,8 +105,9 @@ func (s *storeConfiguration) PatchAPIStoresStoreIDEnvironmentVariables(ctx conte
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.PatchAPIStoresStoreIDEnvironmentVariablesResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:
@@ -155,8 +157,9 @@ func (s *storeConfiguration) PostAPIStoresStoreIDEnvironmentVariables(ctx contex
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.PostAPIStoresStoreIDEnvironmentVariablesResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 201:

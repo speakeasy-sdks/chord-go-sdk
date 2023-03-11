@@ -6,7 +6,7 @@ Chord’s headless e-commerce and data platform empower you to build bespoke, be
 ## SDK Installation
 
 ```bash
-go get github.com/speakeasy-sdks/chord-go-sdk
+go get openapi
 ```
 <!-- End SDK Installation -->
 
@@ -16,31 +16,29 @@ go get github.com/speakeasy-sdks/chord-go-sdk
 package main
 
 import (
+    "context"
     "log"
-    "github.com/speakeasy-sdks/chord-go-sdk"
-    "github.com/speakeasy-sdks/chord-go-sdk/pkg/models/shared"
-    "github.com/speakeasy-sdks/chord-go-sdk/pkg/models/operations"
+    "openapi"
+    "openapi/pkg/models/shared"
+    "openapi/pkg/models/operations"
 )
 
 func main() {
-    opts := []sdk.SDKOption{
-        sdk.WithSecurity(
-            shared.Security{
-                BearerAuth: shared.SchemeBearerAuth{
-                    Authorization: "Bearer YOUR_BEARER_TOKEN_HERE",
-                },
-            }
-        ),
-    }
-
-    s := sdk.New(opts...)
+    s := sdk.New(sdk.WithSecurity(
+        shared.Security{
+            BearerAuth: shared.SchemeBearerAuth{
+                Authorization: "Bearer YOUR_BEARER_TOKEN_HERE",
+            },
+        },
+    ))
     
     req := operations.FindWebhookAttempsRequest{
         QueryParams: operations.FindWebhookAttempsQueryParams{
             Q: "unde",
         },
     }
-    
+
+    ctx := context.Background()
     res, err := s.Attempts.FindWebhookAttemps(ctx, req)
     if err != nil {
         log.Fatal(err)
@@ -49,6 +47,7 @@ func main() {
     if res.StatusCode == http.StatusOK {
         // handle response
     }
+}
 ```
 <!-- End SDK Example Usage -->
 

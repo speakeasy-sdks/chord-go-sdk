@@ -3,9 +3,9 @@ package sdk
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/models/operations"
-	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/utils"
 	"net/http"
+	"openapi/v2/pkg/models/operations"
+	"openapi/v2/pkg/utils"
 	"strings"
 )
 
@@ -54,8 +54,9 @@ func (s *state) GetStatesByID(ctx context.Context, request operations.GetStatesB
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetStatesByIDResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -89,8 +90,9 @@ func (s *state) ListStates(ctx context.Context) (*operations.ListStatesResponse,
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.ListStatesResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:

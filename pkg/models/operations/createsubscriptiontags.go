@@ -1,5 +1,9 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type CreateSubscriptionTagsPathParams struct {
 	SubscriptionID string `pathParam:"style=simple,explode=false,name=subscription_id"`
 }
@@ -15,5 +19,6 @@ type CreateSubscriptionTagsRequest struct {
 
 type CreateSubscriptionTagsResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
+	RawResponse *http.Response
 }

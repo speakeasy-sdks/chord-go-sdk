@@ -1,6 +1,11 @@
 package operations
 
+import (
+	"net/http"
+)
+
 type ListWalletPaymentSourceResponse struct {
 	ContentType string
-	StatusCode  int64
+	StatusCode  int
+	RawResponse *http.Response
 }

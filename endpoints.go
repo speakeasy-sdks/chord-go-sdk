@@ -3,9 +3,9 @@ package sdk
 import (
 	"context"
 	"fmt"
-	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/models/operations"
-	"github.com/speakeasy-sdks/chord-go-sdk/v2/pkg/utils"
 	"net/http"
+	"openapi/v2/pkg/models/operations"
+	"openapi/v2/pkg/utils"
 	"strings"
 )
 
@@ -40,7 +40,9 @@ func (s *endpoints) FindWebhookEndpoints(ctx context.Context, request operations
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.securityClient
 
@@ -56,8 +58,9 @@ func (s *endpoints) FindWebhookEndpoints(ctx context.Context, request operations
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.FindWebhookEndpointsResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -76,7 +79,9 @@ func (s *endpoints) GetAPIWebhookEndpointsID(ctx context.Context, request operat
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	utils.PopulateQueryParams(ctx, req, request.QueryParams)
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.securityClient
 
@@ -92,8 +97,9 @@ func (s *endpoints) GetAPIWebhookEndpointsID(ctx context.Context, request operat
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.GetAPIWebhookEndpointsIDResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
@@ -142,8 +148,9 @@ func (s *endpoints) PutAPIWebhookEndpointsID(ctx context.Context, request operat
 	contentType := httpRes.Header.Get("Content-Type")
 
 	res := &operations.PutAPIWebhookEndpointsIDResponse{
-		StatusCode:  int64(httpRes.StatusCode),
+		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
+		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
