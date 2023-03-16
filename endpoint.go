@@ -35,7 +35,7 @@ func (s *endpoint) CreateEndpoint(ctx context.Context, request operations.Create
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/api/webhook/endpoints"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -75,7 +75,7 @@ func (s *endpoint) CreateEndpoint(ctx context.Context, request operations.Create
 // DeleteAPIWebhookEndpointsID - Remove Endpoint
 func (s *endpoint) DeleteAPIWebhookEndpointsID(ctx context.Context, request operations.DeleteAPIWebhookEndpointsIDRequest) (*operations.DeleteAPIWebhookEndpointsIDResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/webhook/endpoints/{id}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/api/webhook/endpoints/{id}", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {

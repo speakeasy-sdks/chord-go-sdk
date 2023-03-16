@@ -32,7 +32,7 @@ func newStoreConfiguration(defaultClient, securityClient HTTPClient, serverURL, 
 // Gets the Store Configuration
 func (s *storeConfiguration) GetAPIStoresStoreIDEnvironmentVariables(ctx context.Context, request operations.GetAPIStoresStoreIDEnvironmentVariablesRequest) (*operations.GetAPIStoresStoreIDEnvironmentVariablesResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/stores/{store_id}/environment_variables", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/api/stores/{store_id}/environment_variables", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -77,9 +77,9 @@ func (s *storeConfiguration) GetAPIStoresStoreIDEnvironmentVariables(ctx context
 // Update the Store Configuration
 func (s *storeConfiguration) PatchAPIStoresStoreIDEnvironmentVariables(ctx context.Context, request operations.PatchAPIStoresStoreIDEnvironmentVariablesRequest) (*operations.PatchAPIStoresStoreIDEnvironmentVariablesResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/stores/{store_id}/environment_variables", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/api/stores/{store_id}/environment_variables", request.PathParams, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -129,9 +129,9 @@ func (s *storeConfiguration) PatchAPIStoresStoreIDEnvironmentVariables(ctx conte
 // Update the Store Configuration
 func (s *storeConfiguration) PostAPIStoresStoreIDEnvironmentVariables(ctx context.Context, request operations.PostAPIStoresStoreIDEnvironmentVariablesRequest) (*operations.PostAPIStoresStoreIDEnvironmentVariablesResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/stores/{store_id}/environment_variables", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/api/stores/{store_id}/environment_variables", request.PathParams, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}

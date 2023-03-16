@@ -33,7 +33,7 @@ func newState(defaultClient, securityClient HTTPClient, serverURL, language, sdk
 // get the state by country ID
 func (s *state) GetStatesByID(ctx context.Context, request operations.GetStatesByIDRequest) (*operations.GetStatesByIDResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/countries/{country_id}/states", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/api/countries/{country_id}/states", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

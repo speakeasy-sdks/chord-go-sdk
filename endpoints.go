@@ -40,7 +40,7 @@ func (s *endpoints) FindWebhookEndpoints(ctx context.Context, request operations
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -72,14 +72,14 @@ func (s *endpoints) FindWebhookEndpoints(ctx context.Context, request operations
 // GetAPIWebhookEndpointsID - retrieve Endpoint
 func (s *endpoints) GetAPIWebhookEndpointsID(ctx context.Context, request operations.GetAPIWebhookEndpointsIDRequest) (*operations.GetAPIWebhookEndpointsIDResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/webhook/endpoints/{id}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/api/webhook/endpoints/{id}", request.PathParams, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -120,9 +120,9 @@ func (s *endpoints) GetAPIWebhookEndpointsID(ctx context.Context, request operat
 // PutAPIWebhookEndpointsID - Update Endpoint
 func (s *endpoints) PutAPIWebhookEndpointsID(ctx context.Context, request operations.PutAPIWebhookEndpointsIDRequest) (*operations.PutAPIWebhookEndpointsIDResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/webhook/endpoints/{id}", request.PathParams)
+	url := utils.GenerateURL(ctx, baseURL, "/api/webhook/endpoints/{id}", request.PathParams, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}

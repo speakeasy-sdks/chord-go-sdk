@@ -34,7 +34,7 @@ func (s *referralIdentifier) FindOrCreateReferralIdentifier(ctx context.Context,
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/api/referral_identifiers"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -66,6 +66,7 @@ func (s *referralIdentifier) FindOrCreateReferralIdentifier(ctx context.Context,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
+		fallthrough
 	case httpRes.StatusCode == 201:
 	}
 

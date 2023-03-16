@@ -34,7 +34,7 @@ func (s *imports) PostAPISolidusImporterImports(ctx context.Context, request ope
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/api/solidus_importer/imports"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "multipart")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}

@@ -59,6 +59,7 @@ func (s *walletPaymentSource) ListWalletPaymentSource(ctx context.Context) (*ope
 	}
 	switch {
 	case httpRes.StatusCode == 200:
+		fallthrough
 	case httpRes.StatusCode == 401:
 	}
 

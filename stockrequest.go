@@ -34,7 +34,7 @@ func (s *stockRequest) CreateStockRequest(ctx context.Context, request operation
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/api/stock_requests"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -66,6 +66,7 @@ func (s *stockRequest) CreateStockRequest(ctx context.Context, request operation
 	}
 	switch {
 	case httpRes.StatusCode == 201:
+		fallthrough
 	case httpRes.StatusCode == 422:
 	}
 

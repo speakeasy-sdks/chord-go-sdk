@@ -35,7 +35,7 @@ func (s *tag) CreateTag(ctx context.Context, request operations.CreateTagRequest
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/api/tags"
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request)
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
