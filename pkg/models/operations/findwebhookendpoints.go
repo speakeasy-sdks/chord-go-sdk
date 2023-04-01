@@ -6,17 +6,13 @@ import (
 	"net/http"
 )
 
-type FindWebhookEndpointsQueryParams struct {
+type FindWebhookEndpointsRequest struct {
 	// Maximum number of attempts (by default limited to 25)
 	AttemptsCount *int64 `queryParam:"style=form,explode=true,name=attempts_count"`
 	// Include attemps
 	IncludeAttempts *bool `queryParam:"style=form,explode=true,name=include_attempts"`
 	// Ransack search
 	Q *string `queryParam:"style=form,explode=true,name=q"`
-}
-
-type FindWebhookEndpointsRequest struct {
-	QueryParams FindWebhookEndpointsQueryParams
 }
 
 type FindWebhookEndpointsResponse struct {

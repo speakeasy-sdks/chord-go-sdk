@@ -6,12 +6,8 @@ import (
 	"net/http"
 )
 
-type GetAPITagsIDPathParams struct {
-	ID string `pathParam:"style=simple,explode=false,name=id"`
-}
-
 type GetAPITagsIDRequest struct {
-	PathParams GetAPITagsIDPathParams
+	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
 type GetAPITagsID200ApplicationJSONOrders struct {

@@ -33,7 +33,7 @@ func newEndpoint(defaultClient, securityClient HTTPClient, serverURL, language, 
 
 // CreateEndpoint - create Endpoint
 // if an endpoint with the same name exists, it is simply returned
-func (s *endpoint) CreateEndpoint(ctx context.Context, request operations.CreateEndpointRequest) (*operations.CreateEndpointResponse, error) {
+func (s *endpoint) CreateEndpoint(ctx context.Context, request operations.CreateEndpointRequestBody) (*operations.CreateEndpointResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/api/webhook/endpoints"
 
@@ -77,7 +77,7 @@ func (s *endpoint) CreateEndpoint(ctx context.Context, request operations.Create
 // DeleteAPIWebhookEndpointsID - Remove Endpoint
 func (s *endpoint) DeleteAPIWebhookEndpointsID(ctx context.Context, request operations.DeleteAPIWebhookEndpointsIDRequest) (*operations.DeleteAPIWebhookEndpointsIDResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/webhook/endpoints/{id}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/api/webhook/endpoints/{id}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {

@@ -6,11 +6,6 @@ import (
 	"net/http"
 )
 
-type PutAPIRolesIDPathParams struct {
-	// Role id
-	ID string `pathParam:"style=simple,explode=false,name=id"`
-}
-
 type PutAPIRolesIDRequestBodyRoleUsers struct {
 	Destroy *bool `json:"_destroy,omitempty"`
 	ID      int64 `json:"id"`
@@ -26,8 +21,9 @@ type PutAPIRolesIDRequestBody struct {
 }
 
 type PutAPIRolesIDRequest struct {
-	PathParams PutAPIRolesIDPathParams
-	Request    *PutAPIRolesIDRequestBody `request:"mediaType=application/json"`
+	RequestBody *PutAPIRolesIDRequestBody `request:"mediaType=application/json"`
+	// Role id
+	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
 type PutAPIRolesIDResponse struct {

@@ -19,10 +19,6 @@ type CreateRoleRequestBody struct {
 	Role CreateRoleRequestBodyRole `json:"role"`
 }
 
-type CreateRoleRequest struct {
-	Request *CreateRoleRequestBody `request:"mediaType=application/json"`
-}
-
 type CreateRoleResponse struct {
 	ContentType string
 	StatusCode  int

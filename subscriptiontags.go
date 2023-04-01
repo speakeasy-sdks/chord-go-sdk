@@ -35,9 +35,9 @@ func newSubscriptionTags(defaultClient, securityClient HTTPClient, serverURL, la
 // Use the body to pass multiple tags
 func (s *subscriptionTags) CreateSubscriptionTags(ctx context.Context, request operations.CreateSubscriptionTagsRequest) (*operations.CreateSubscriptionTagsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/subscriptions/{subscription_id}/tags", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/api/subscriptions/{subscription_id}/tags", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -80,7 +80,7 @@ func (s *subscriptionTags) CreateSubscriptionTags(ctx context.Context, request o
 // Use the body to pass multiple tags
 func (s *subscriptionTags) DeleteSubscriptionTags(ctx context.Context, request operations.DeleteSubscriptionTagsRequest) (*operations.DeleteSubscriptionTagsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/subscriptions/{subscription_id}/tags", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/api/subscriptions/{subscription_id}/tags", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
 	if err != nil {
@@ -117,7 +117,7 @@ func (s *subscriptionTags) DeleteSubscriptionTags(ctx context.Context, request o
 // GetSubscription - Retrieve a subscription
 func (s *subscriptionTags) GetSubscription(ctx context.Context, request operations.GetSubscriptionRequest) (*operations.GetSubscriptionResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/subscriptions/{id}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/api/subscriptions/{id}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -161,7 +161,7 @@ func (s *subscriptionTags) GetSubscriptions(ctx context.Context, request operati
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -194,9 +194,9 @@ func (s *subscriptionTags) GetSubscriptions(ctx context.Context, request operati
 // Set the tags on the subscription
 func (s *subscriptionTags) UpdateSubscriptionTags(ctx context.Context, request operations.UpdateSubscriptionTagsRequest) (*operations.UpdateSubscriptionTagsResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/subscriptions/{subscription_id}/tags", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/api/subscriptions/{subscription_id}/tags", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}

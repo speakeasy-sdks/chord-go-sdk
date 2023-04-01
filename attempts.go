@@ -42,7 +42,7 @@ func (s *attempts) FindWebhookAttemps(ctx context.Context, request operations.Fi
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 
-	if err := utils.PopulateQueryParams(ctx, req, request.QueryParams, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -74,7 +74,7 @@ func (s *attempts) FindWebhookAttemps(ctx context.Context, request operations.Fi
 // GetAPIWebhookAttemptsID - retrieve Attempt
 func (s *attempts) GetAPIWebhookAttemptsID(ctx context.Context, request operations.GetAPIWebhookAttemptsIDRequest) (*operations.GetAPIWebhookAttemptsIDResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/webhook/attempts/{id}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/api/webhook/attempts/{id}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

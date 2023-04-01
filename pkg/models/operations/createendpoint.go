@@ -17,10 +17,6 @@ type CreateEndpointRequestBody struct {
 	Endpoint CreateEndpointRequestBodyEndpoint `json:"endpoint"`
 }
 
-type CreateEndpointRequest struct {
-	Request *CreateEndpointRequestBody `request:"mediaType=application/json"`
-}
-
 type CreateEndpointResponse struct {
 	ContentType string
 	StatusCode  int

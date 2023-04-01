@@ -33,7 +33,7 @@ func newTag(defaultClient, securityClient HTTPClient, serverURL, language, sdkVe
 
 // CreateTag - create Tag
 // if a tag with the same name exists, it is simply returned
-func (s *tag) CreateTag(ctx context.Context, request operations.CreateTagRequest) (*operations.CreateTagResponse, error) {
+func (s *tag) CreateTag(ctx context.Context, request operations.CreateTagRequestBody) (*operations.CreateTagResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/api/tags"
 

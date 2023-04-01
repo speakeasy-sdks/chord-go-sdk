@@ -6,12 +6,8 @@ import (
 	"net/http"
 )
 
-type GetStatesByIDPathParams struct {
-	CountryID string `pathParam:"style=simple,explode=false,name=country_id"`
-}
-
 type GetStatesByIDRequest struct {
-	PathParams GetStatesByIDPathParams
+	CountryID string `pathParam:"style=simple,explode=false,name=country_id"`
 }
 
 type GetStatesByIDResponse struct {

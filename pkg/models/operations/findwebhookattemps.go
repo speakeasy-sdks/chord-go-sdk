@@ -6,13 +6,9 @@ import (
 	"net/http"
 )
 
-type FindWebhookAttempsQueryParams struct {
+type FindWebhookAttempsRequest struct {
 	// Ransack search
 	Q *string `queryParam:"style=form,explode=true,name=q"`
-}
-
-type FindWebhookAttempsRequest struct {
-	QueryParams FindWebhookAttempsQueryParams
 }
 
 type FindWebhookAttempsResponse struct {

@@ -6,10 +6,6 @@ import (
 	"net/http"
 )
 
-type PutAPITagsIDPathParams struct {
-	ID string `pathParam:"style=simple,explode=false,name=id"`
-}
-
 type PutAPITagsIDRequestBodyTag struct {
 	Name string `json:"name"`
 }
@@ -19,8 +15,8 @@ type PutAPITagsIDRequestBody struct {
 }
 
 type PutAPITagsIDRequest struct {
-	PathParams PutAPITagsIDPathParams
-	Request    *PutAPITagsIDRequestBody `request:"mediaType=application/json"`
+	RequestBody *PutAPITagsIDRequestBody `request:"mediaType=application/json"`
+	ID          string                   `pathParam:"style=simple,explode=false,name=id"`
 }
 
 type PutAPITagsID200ApplicationJSONOrders struct {

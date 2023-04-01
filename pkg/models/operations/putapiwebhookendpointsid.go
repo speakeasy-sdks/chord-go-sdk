@@ -6,11 +6,6 @@ import (
 	"net/http"
 )
 
-type PutAPIWebhookEndpointsIDPathParams struct {
-	// Endpoint id
-	ID string `pathParam:"style=simple,explode=false,name=id"`
-}
-
 type PutAPIWebhookEndpointsIDRequestBodyEndpoint struct {
 	TargetURL string  `json:"target_url"`
 	Token     *string `json:"token,omitempty"`
@@ -21,8 +16,9 @@ type PutAPIWebhookEndpointsIDRequestBody struct {
 }
 
 type PutAPIWebhookEndpointsIDRequest struct {
-	PathParams PutAPIWebhookEndpointsIDPathParams
-	Request    *PutAPIWebhookEndpointsIDRequestBody `request:"mediaType=application/json"`
+	RequestBody *PutAPIWebhookEndpointsIDRequestBody `request:"mediaType=application/json"`
+	// Endpoint id
+	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
 // PutAPIWebhookEndpointsID200ApplicationJSON - OK

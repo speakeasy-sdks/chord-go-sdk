@@ -32,7 +32,7 @@ func newImports(defaultClient, securityClient HTTPClient, serverURL, language, s
 }
 
 // PostAPISolidusImporterImports - Create Import
-func (s *imports) PostAPISolidusImporterImports(ctx context.Context, request operations.PostAPISolidusImporterImportsRequest) (*operations.PostAPISolidusImporterImportsResponse, error) {
+func (s *imports) PostAPISolidusImporterImports(ctx context.Context, request operations.PostAPISolidusImporterImportsRequestBody) (*operations.PostAPISolidusImporterImportsResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/api/solidus_importer/imports"
 

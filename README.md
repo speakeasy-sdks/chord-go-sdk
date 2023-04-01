@@ -26,16 +26,12 @@ import (
 func main() {
     s := sdk.New(
         sdk.WithSecurity(shared.Security{
-            BearerAuth: shared.SchemeBearerAuth{
-                Authorization: "Bearer YOUR_BEARER_TOKEN_HERE",
-            },
+            BearerAuth: "Bearer YOUR_BEARER_TOKEN_HERE",
         }),
     )
 
     req := operations.FindWebhookAttempsRequest{
-        QueryParams: operations.FindWebhookAttempsQueryParams{
-            Q: "unde",
-        },
+        Q: "corrupti",
     }
 
     ctx := context.Background()
@@ -80,7 +76,7 @@ The order token must be passed in the X-Spree-Order-Token header in the followin
 If you are already providing an API key, you don't need to also provide the order token (although you may do so). More information on authentication can be found [here](https://chord.stoplight.io/docs/chord-oms/ZG9jOjEwODE5NTQ-authentication)
 
 <!-- Start SDK Available Operations -->
-## SDK Available Operations
+## Available Resources and Operations
 
 
 ### Attempts

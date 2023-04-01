@@ -6,13 +6,9 @@ import (
 	"net/http"
 )
 
-type GetAPIWebhookAttemptsIDPathParams struct {
+type GetAPIWebhookAttemptsIDRequest struct {
 	// Attempt id
 	ID string `pathParam:"style=simple,explode=false,name=id"`
-}
-
-type GetAPIWebhookAttemptsIDRequest struct {
-	PathParams GetAPIWebhookAttemptsIDPathParams
 }
 
 // GetAPIWebhookAttemptsID200ApplicationJSON - Found

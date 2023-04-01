@@ -70,7 +70,7 @@ func (s *tags) FindTags(ctx context.Context) (*operations.FindTagsResponse, erro
 // GetAPITagsID - retrieve Tag
 func (s *tags) GetAPITagsID(ctx context.Context, request operations.GetAPITagsIDRequest) (*operations.GetAPITagsIDResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/tags/{id}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/api/tags/{id}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -115,9 +115,9 @@ func (s *tags) GetAPITagsID(ctx context.Context, request operations.GetAPITagsID
 // Use the body to pass multiple tags
 func (s *tags) PutAPITagsAddToOrderNumber(ctx context.Context, request operations.PutAPITagsAddToOrderNumberRequest) (*operations.PutAPITagsAddToOrderNumberResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/tags/add_to/{order_number}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/api/tags/add_to/{order_number}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -155,7 +155,7 @@ func (s *tags) PutAPITagsAddToOrderNumber(ctx context.Context, request operation
 }
 
 // PutAPITagsAddToOrders - Add Tag(s) to Order(s)
-func (s *tags) PutAPITagsAddToOrders(ctx context.Context, request operations.PutAPITagsAddToOrdersRequest) (*operations.PutAPITagsAddToOrdersResponse, error) {
+func (s *tags) PutAPITagsAddToOrders(ctx context.Context, request operations.PutAPITagsAddToOrdersRequestBody) (*operations.PutAPITagsAddToOrdersResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/api/tags/add_to_orders"
 
@@ -200,9 +200,9 @@ func (s *tags) PutAPITagsAddToOrders(ctx context.Context, request operations.Put
 // Use the body to pass multiple tags
 func (s *tags) PutAPITagsRemoveFromOrderNumber(ctx context.Context, request operations.PutAPITagsRemoveFromOrderNumberRequest) (*operations.PutAPITagsRemoveFromOrderNumberResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/tags/remove_from/{order_number}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/api/tags/remove_from/{order_number}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -242,9 +242,9 @@ func (s *tags) PutAPITagsRemoveFromOrderNumber(ctx context.Context, request oper
 // PutAPITagsID - Update Tag
 func (s *tags) PutAPITagsID(ctx context.Context, request operations.PutAPITagsIDRequest) (*operations.PutAPITagsIDResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/tags/{id}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/api/tags/{id}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -294,7 +294,7 @@ func (s *tags) PutAPITagsID(ctx context.Context, request operations.PutAPITagsID
 // Remove the given tag from the order
 func (s *tags) PutAPITagsIDRemoveFromOrderNumber(ctx context.Context, request operations.PutAPITagsIDRemoveFromOrderNumberRequest) (*operations.PutAPITagsIDRemoveFromOrderNumberResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/tags/{id})/remove_from/{order_number}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/api/tags/{id})/remove_from/{order_number}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "PUT", url, nil)
 	if err != nil {
@@ -330,7 +330,7 @@ func (s *tags) PutAPITagsIDRemoveFromOrderNumber(ctx context.Context, request op
 // Add tag with the given id to the order
 func (s *tags) PutAPITagsIDAddToOrderNumber(ctx context.Context, request operations.PutAPITagsIDAddToOrderNumberRequest) (*operations.PutAPITagsIDAddToOrderNumberResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/tags/{id}/add_to/{order_number}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/api/tags/{id}/add_to/{order_number}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "PUT", url, nil)
 	if err != nil {

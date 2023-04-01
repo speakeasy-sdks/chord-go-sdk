@@ -6,13 +6,9 @@ import (
 	"net/http"
 )
 
-type DeleteAPIWebhookEndpointsIDPathParams struct {
+type DeleteAPIWebhookEndpointsIDRequest struct {
 	// Endpoint id
 	ID string `pathParam:"style=simple,explode=false,name=id"`
-}
-
-type DeleteAPIWebhookEndpointsIDRequest struct {
-	PathParams DeleteAPIWebhookEndpointsIDPathParams
 }
 
 type DeleteAPIWebhookEndpointsIDResponse struct {

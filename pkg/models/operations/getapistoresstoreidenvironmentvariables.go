@@ -6,12 +6,8 @@ import (
 	"net/http"
 )
 
-type GetAPIStoresStoreIDEnvironmentVariablesPathParams struct {
-	StoreID int64 `pathParam:"style=simple,explode=false,name=store_id"`
-}
-
 type GetAPIStoresStoreIDEnvironmentVariablesRequest struct {
-	PathParams GetAPIStoresStoreIDEnvironmentVariablesPathParams
+	StoreID int64 `pathParam:"style=simple,explode=false,name=store_id"`
 }
 
 // GetAPIStoresStoreIDEnvironmentVariables200ApplicationJSON - The Environment Variables of the Store

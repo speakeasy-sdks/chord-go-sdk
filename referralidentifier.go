@@ -32,7 +32,7 @@ func newReferralIdentifier(defaultClient, securityClient HTTPClient, serverURL, 
 }
 
 // FindOrCreateReferralIdentifier - Referral identifier
-func (s *referralIdentifier) FindOrCreateReferralIdentifier(ctx context.Context, request operations.FindOrCreateReferralIdentifierRequest) (*operations.FindOrCreateReferralIdentifierResponse, error) {
+func (s *referralIdentifier) FindOrCreateReferralIdentifier(ctx context.Context, request operations.FindOrCreateReferralIdentifierRequestBody) (*operations.FindOrCreateReferralIdentifierResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/api/referral_identifiers"
 

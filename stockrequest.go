@@ -32,7 +32,7 @@ func newStockRequest(defaultClient, securityClient HTTPClient, serverURL, langua
 }
 
 // CreateStockRequest - Create Stock Request
-func (s *stockRequest) CreateStockRequest(ctx context.Context, request operations.CreateStockRequestRequest) (*operations.CreateStockRequestResponse, error) {
+func (s *stockRequest) CreateStockRequest(ctx context.Context, request operations.CreateStockRequestRequestBody) (*operations.CreateStockRequestResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/api/stock_requests"
 

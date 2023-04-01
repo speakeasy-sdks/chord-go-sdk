@@ -33,7 +33,7 @@ func newRoles(defaultClient, securityClient HTTPClient, serverURL, language, sdk
 
 // CreateRole - create Role
 // creates a Role. Users can be added to it by passing the role_users_attributes array with each user_id
-func (s *roles) CreateRole(ctx context.Context, request operations.CreateRoleRequest) (*operations.CreateRoleResponse, error) {
+func (s *roles) CreateRole(ctx context.Context, request operations.CreateRoleRequestBody) (*operations.CreateRoleResponse, error) {
 	baseURL := s.serverURL
 	url := strings.TrimSuffix(baseURL, "/") + "/api/roles"
 
@@ -113,7 +113,7 @@ func (s *roles) FindRoles(ctx context.Context) (*operations.FindRolesResponse, e
 // GetAPIRolesID - retrieve Role
 func (s *roles) GetAPIRolesID(ctx context.Context, request operations.GetAPIRolesIDRequest) (*operations.GetAPIRolesIDResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/roles/{id}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/api/roles/{id}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -160,9 +160,9 @@ func (s *roles) GetAPIRolesID(ctx context.Context, request operations.GetAPIRole
 //	If a _destroy key is passed along with a truthy value, the user association will be removed if present
 func (s *roles) PutAPIRolesID(ctx context.Context, request operations.PutAPIRolesIDRequest) (*operations.PutAPIRolesIDResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/roles/{id}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/api/roles/{id}", request, nil)
 
-	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "Request", "json")
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, "RequestBody", "json")
 	if err != nil {
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
@@ -207,7 +207,7 @@ func (s *roles) PutAPIRolesID(ctx context.Context, request operations.PutAPIRole
 //	If the user is already in the role, nothing is done and the role is simply returned
 func (s *roles) PutAPIRolesIDAddUserID(ctx context.Context, request operations.PutAPIRolesIDAddUserIDRequest) (*operations.PutAPIRolesIDAddUserIDResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/roles/{id}/add/{user_id}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/api/roles/{id}/add/{user_id}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "PUT", url, nil)
 	if err != nil {
@@ -247,7 +247,7 @@ func (s *roles) PutAPIRolesIDAddUserID(ctx context.Context, request operations.P
 //	If the user hasn't got the given Role, nothing is done and the role is simply returned
 func (s *roles) PutAPIRolesIDRemoveUserID(ctx context.Context, request operations.PutAPIRolesIDRemoveUserIDRequest) (*operations.PutAPIRolesIDRemoveUserIDResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/roles/{id}/remove/{user_id}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/api/roles/{id}/remove/{user_id}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "PUT", url, nil)
 	if err != nil {

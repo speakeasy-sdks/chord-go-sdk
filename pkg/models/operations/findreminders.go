@@ -6,13 +6,9 @@ import (
 	"net/http"
 )
 
-type FindRemindersQueryParams struct {
+type FindRemindersRequest struct {
 	// Ransack search
 	Q *string `queryParam:"style=form,explode=true,name=q"`
-}
-
-type FindRemindersRequest struct {
-	QueryParams FindRemindersQueryParams
 }
 
 type FindRemindersResponse struct {

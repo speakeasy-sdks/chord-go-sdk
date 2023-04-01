@@ -6,13 +6,9 @@ import (
 	"net/http"
 )
 
-type GetSubscriptionsQueryParams struct {
+type GetSubscriptionsRequest struct {
 	// Ransack search
 	Q *string `queryParam:"style=form,explode=true,name=q"`
-}
-
-type GetSubscriptionsRequest struct {
-	QueryParams GetSubscriptionsQueryParams
 }
 
 type GetSubscriptionsResponse struct {

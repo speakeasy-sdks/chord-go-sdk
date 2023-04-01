@@ -6,21 +6,13 @@ import (
 	"net/http"
 )
 
-type GetAPIWebhookEndpointsIDPathParams struct {
-	// Endpoint id
-	ID string `pathParam:"style=simple,explode=false,name=id"`
-}
-
-type GetAPIWebhookEndpointsIDQueryParams struct {
+type GetAPIWebhookEndpointsIDRequest struct {
 	// Maximum number of attempts (by default limited to 25)
 	AttemptsCount *int64 `queryParam:"style=form,explode=true,name=attempts_count"`
+	// Endpoint id
+	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Include attemps
 	IncludeAttempts *bool `queryParam:"style=form,explode=true,name=include_attempts"`
-}
-
-type GetAPIWebhookEndpointsIDRequest struct {
-	PathParams  GetAPIWebhookEndpointsIDPathParams
-	QueryParams GetAPIWebhookEndpointsIDQueryParams
 }
 
 // GetAPIWebhookEndpointsID200ApplicationJSON - Found

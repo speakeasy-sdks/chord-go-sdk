@@ -6,17 +6,19 @@ import (
 	"net/http"
 )
 
-type PatchAPIStoresStoreIDEnvironmentVariablesPathParams struct {
-	StoreID int64 `pathParam:"style=simple,explode=false,name=store_id"`
+type PatchAPIStoresStoreIDEnvironmentVariablesRequestBodySettings struct {
+	Delete *bool  `json:"_delete,omitempty"`
+	Key    string `json:"key"`
+	Value  string `json:"value"`
 }
 
 type PatchAPIStoresStoreIDEnvironmentVariablesRequestBody struct {
-	Settings []interface{} `json:"settings"`
+	Settings []PatchAPIStoresStoreIDEnvironmentVariablesRequestBodySettings `json:"settings"`
 }
 
 type PatchAPIStoresStoreIDEnvironmentVariablesRequest struct {
-	PathParams PatchAPIStoresStoreIDEnvironmentVariablesPathParams
-	Request    *PatchAPIStoresStoreIDEnvironmentVariablesRequestBody `request:"mediaType=application/json"`
+	RequestBody *PatchAPIStoresStoreIDEnvironmentVariablesRequestBody `request:"mediaType=application/json"`
+	StoreID     int64                                                 `pathParam:"style=simple,explode=false,name=store_id"`
 }
 
 // PatchAPIStoresStoreIDEnvironmentVariables201ApplicationJSON - The updated Environment Variables of the Store

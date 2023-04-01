@@ -35,7 +35,7 @@ func newCountry(defaultClient, securityClient HTTPClient, serverURL, language, s
 // get the country by id
 func (s *country) GetCountryByID(ctx context.Context, request operations.GetCountryByIDRequest) (*operations.GetCountryByIDResponse, error) {
 	baseURL := s.serverURL
-	url := utils.GenerateURL(ctx, baseURL, "/api/countries/{id}", request.PathParams, nil)
+	url := utils.GenerateURL(ctx, baseURL, "/api/countries/{id}", request, nil)
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {

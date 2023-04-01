@@ -6,12 +6,8 @@ import (
 	"net/http"
 )
 
-type GetAPIRolesIDPathParams struct {
-	ID string `pathParam:"style=simple,explode=false,name=id"`
-}
-
 type GetAPIRolesIDRequest struct {
-	PathParams GetAPIRolesIDPathParams
+	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
 type GetAPIRolesID200ApplicationJSONUsers struct {

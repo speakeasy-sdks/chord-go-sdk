@@ -6,15 +6,11 @@ import (
 	"net/http"
 )
 
-type PutAPIRolesIDRemoveUserIDPathParams struct {
+type PutAPIRolesIDRemoveUserIDRequest struct {
 	// Role id
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// User id
 	UserID string `pathParam:"style=simple,explode=false,name=user_id"`
-}
-
-type PutAPIRolesIDRemoveUserIDRequest struct {
-	PathParams PutAPIRolesIDRemoveUserIDPathParams
 }
 
 type PutAPIRolesIDRemoveUserIDResponse struct {

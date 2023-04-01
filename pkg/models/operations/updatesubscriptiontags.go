@@ -6,17 +6,13 @@ import (
 	"net/http"
 )
 
-type UpdateSubscriptionTagsPathParams struct {
-	SubscriptionID string `pathParam:"style=simple,explode=false,name=subscription_id"`
-}
-
 type UpdateSubscriptionTagsRequestBody struct {
 	Tags []string `json:"tags,omitempty"`
 }
 
 type UpdateSubscriptionTagsRequest struct {
-	PathParams UpdateSubscriptionTagsPathParams
-	Request    *UpdateSubscriptionTagsRequestBody `request:"mediaType=application/json"`
+	RequestBody    *UpdateSubscriptionTagsRequestBody `request:"mediaType=application/json"`
+	SubscriptionID string                             `pathParam:"style=simple,explode=false,name=subscription_id"`
 }
 
 type UpdateSubscriptionTagsResponse struct {
