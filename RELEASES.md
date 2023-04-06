@@ -223,3 +223,11 @@ Based on:
 - Speakeasy CLI 1.19.3 https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [Go v2.15.1] https://github.com/speakeasy-sdks/chord-go-sdk/releases/tag/v2.15.1 - .
+
+## Version 2.15.2
+### Changes
+Based on:
+- OpenAPI Doc v1 chord.yaml
+- Speakeasy CLI 1.19.6 https://github.com/speakeasy-api/speakeasy
+### Releases
+- [Go v2.15.2] https://github.com/speakeasy-sdks/chord-go-sdk/releases/tag/v2.15.2 - .
